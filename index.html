@@ -2,7 +2,10 @@
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <title>KSR Master IPS SMP - Platform Persiapan Mandiri</title>
     <!-- Tailwind CSS & Lucide Icons -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -17,69 +20,80 @@
     <style>
       body {
         font-family: "Plus Jakarta Sans", sans-serif;
+        -webkit-tap-highlight-color: transparent;
       }
       .custom-scroll::-webkit-scrollbar {
-        width: 6px;
+        width: 4px;
+        height: 4px;
       }
       .custom-scroll::-webkit-scrollbar-thumb {
         background: #cbd5e1;
         border-radius: 4px;
       }
-      .custom-scroll::-webkit-scrollbar-thumb:hover {
-        background: #94a3b8;
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
       }
     </style>
   </head>
   <body
     class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col"
   >
-    <!-- NAVBAR UTAMA -->
-    <nav class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16 items-center">
-          <div class="flex items-center gap-3">
+    <!-- NAVBAR UTAMA RESPONSIF -->
+    <nav class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-xs">
+      <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-14 sm:h-16 items-center gap-2">
+          <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
             <div
-              class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-600 flex items-center justify-center text-white shadow-md shadow-indigo-100"
+              class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-600 flex items-center justify-center text-white shadow-md shadow-indigo-100"
             >
-              <i data-lucide="graduation-cap" class="w-6 h-6"></i>
+              <i data-lucide="graduation-cap" class="w-5 h-5 sm:w-6 sm:h-6"></i>
             </div>
             <div>
               <h1
-                class="font-extrabold text-base md:text-lg text-slate-900 leading-tight"
+                class="font-extrabold text-sm sm:text-base text-slate-900 leading-tight"
               >
                 KSR Master IPS
               </h1>
               <p
-                class="text-[11px] font-semibold text-indigo-600 uppercase tracking-wider"
+                class="text-[9px] sm:text-[11px] font-semibold text-indigo-600 uppercase tracking-wider"
               >
-                Persiapan Kompetisi Sains SMP 2026
+                Persiapan KSR SMP
               </p>
             </div>
           </div>
 
           <!-- Navigation Tabs -->
-          <div class="flex items-center gap-1 md:gap-2">
+          <div class="flex items-center gap-1">
             <button
               onclick="switchTab('modul')"
               id="nav-modul"
-              class="nav-tab px-3.5 py-2 rounded-xl text-xs md:text-sm font-semibold transition flex items-center gap-2 bg-indigo-50 text-indigo-600 border border-indigo-200"
+              class="nav-tab px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-1.5 bg-indigo-50 text-indigo-600 border border-indigo-200"
             >
-              <i data-lucide="book-open" class="w-4 h-4"></i> Modul Materi
+              <i data-lucide="book-open" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
+              <span class="hidden xs:inline">Modul</span>
             </button>
             <button
               onclick="switchTab('cbt')"
               id="nav-cbt"
-              class="nav-tab px-3.5 py-2 rounded-xl text-xs md:text-sm font-semibold transition flex items-center gap-2 text-slate-600 hover:bg-slate-100"
+              class="nav-tab px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-1.5 text-slate-600 hover:bg-slate-100"
             >
-              <i data-lucide="timer" class="w-4 h-4"></i> Simulasi CBT
+              <i data-lucide="timer" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
+              <span class="hidden xs:inline">CBT</span>
             </button>
             <button
               onclick="switchTab('tanya')"
               id="nav-tanya"
-              class="nav-tab px-3.5 py-2 rounded-xl text-xs md:text-sm font-semibold transition flex items-center gap-2 text-slate-600 hover:bg-slate-100"
+              class="nav-tab px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-1.5 text-slate-600 hover:bg-slate-100"
             >
-              <i data-lucide="message-square-text" class="w-4 h-4"></i> Tanya
-              Guru
+              <i
+                data-lucide="message-square-text"
+                class="w-3.5 h-3.5 sm:w-4 sm:h-4"
+              ></i>
+              <span class="hidden xs:inline">Tanya Guru</span>
             </button>
           </div>
         </div>
@@ -87,71 +101,74 @@
     </nav>
 
     <!-- KONTEN CONTAINER -->
-    <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8">
+    <main class="flex-1 max-w-7xl w-full mx-auto p-3 sm:p-6 lg:p-8">
       <!-- ========================================== -->
       <!-- TAB 1: MODUL PEMBELAJARAN LENGKAP -->
       <!-- ========================================== -->
-      <div id="tab-modul" class="space-y-6">
+      <div id="tab-modul" class="space-y-4 sm:space-y-6">
         <!-- Search & Category Filters -->
         <div
-          class="bg-white p-4 md:p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4"
+          class="bg-white p-4 sm:p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3 md:space-y-0 md:flex md:items-center md:justify-between md:gap-4"
         >
           <div>
-            <h2 class="text-xl font-extrabold text-slate-900">
-              Modul Lengkap Kisi-Kisi KSR IPS
+            <h2 class="text-lg sm:text-xl font-extrabold text-slate-900">
+              Modul Kisi-Kisi KSR IPS
             </h2>
             <p class="text-xs text-slate-500 mt-0.5">
               Rangkuman terpadu standar kompetisi nasional jenjang SMP
             </p>
           </div>
-          <div class="flex items-center gap-3">
-            <div class="relative w-full md:w-64">
+          <div
+            class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5"
+          >
+            <div class="relative w-full sm:w-56">
               <i
                 data-lucide="search"
-                class="w-4 h-4 text-slate-400 absolute left-3 top-3"
+                class="w-4 h-4 text-slate-400 absolute left-3 top-2.5"
               ></i>
               <input
                 type="text"
                 id="module-search"
                 oninput="filterModules()"
-                placeholder="Cari topik atau istilah..."
-                class="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition"
+                placeholder="Cari materi..."
+                class="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition"
               />
             </div>
+            <!-- Filter Tabs Horizontal Scroll di HP -->
             <div
-              class="flex gap-1 bg-slate-100 p-1 rounded-xl text-xs font-semibold"
+              class="flex gap-1 bg-slate-100 p-1 rounded-xl text-xs font-semibold overflow-x-auto no-scrollbar"
             >
               <button
                 onclick="filterCategory('all')"
-                class="cat-btn px-3 py-1.5 rounded-lg bg-white text-indigo-600 shadow-xs"
+                class="cat-btn flex-shrink-0 px-3 py-1.5 rounded-lg bg-white text-indigo-600 shadow-xs"
                 data-cat="all"
               >
                 Semua
               </button>
               <button
                 onclick="filterCategory('ekonomi')"
-                class="cat-btn px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900"
+                class="cat-btn flex-shrink-0 px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900"
                 data-cat="ekonomi"
               >
                 Ekonomi
               </button>
               <button
                 onclick="filterCategory('sosiologi')"
-                class="cat-btn px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900"
+                class="cat-btn flex-shrink-0 px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900"
                 data-cat="sosiologi"
               >
                 Sosiologi
               </button>
               <button
                 onclick="filterCategory('geografi')"
-                class="cat-btn px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900"
+                class="cat-btn flex-shrink-0 px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900"
                 data-cat="geografi"
               >
                 Geografi
               </button>
               <button
                 onclick="filterCategory('sejarah')"
-                class="cat-btn px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900"
+                class="cat-btn flex-shrink-0 px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900"
                 data-cat="sejarah"
               >
                 Sejarah
@@ -163,11 +180,11 @@
         <!-- Grid Modul Cards -->
         <div
           id="module-container"
-          class="grid grid-cols-1 md:grid-cols-2 gap-6"
+          class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6"
         >
           <!-- KARTU 1: EKONOMI -->
           <div
-            class="module-card bg-white rounded-2xl border border-slate-200 shadow-sm p-6 hover:shadow-md transition space-y-4"
+            class="module-card bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6 hover:shadow-md transition space-y-4"
             data-category="ekonomi"
           >
             <div
@@ -177,17 +194,17 @@
                 <span class="p-2 rounded-xl bg-emerald-50 text-emerald-600"
                   ><i data-lucide="trending-up" class="w-5 h-5"></i
                 ></span>
-                <h3 class="font-extrabold text-slate-900 text-lg">
+                <h3 class="font-extrabold text-slate-900 text-base sm:text-lg">
                   Ilmu Ekonomi
                 </h3>
               </div>
               <span
-                class="text-[11px] font-bold px-2.5 py-1 bg-emerald-50 text-emerald-700 rounded-full border border-emerald-200"
-                >5 Topik Utama</span
+                class="text-[10px] sm:text-[11px] font-bold px-2 py-0.5 sm:py-1 bg-emerald-50 text-emerald-700 rounded-full border border-emerald-200"
+                >5 Topik</span
               >
             </div>
 
-            <div class="space-y-3 text-xs leading-relaxed text-slate-600">
+            <div class="space-y-2.5 text-xs leading-relaxed text-slate-600">
               <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
                 <strong class="text-slate-900 block mb-1"
                   >1. Kelangkaan & Kebutuhan Manusia:</strong
@@ -195,25 +212,25 @@
                 Kelangkaan (<em>scarcity</em>) muncul karena alat pemuas
                 terbatas menghadapi kebutuhan tanpa batas. Klasifikasi
                 kebutuhan: primer, sekunder, tersier, sekarang vs masa depan,
-                serta barang substitusi & komplementer.
+                serta barang substitusi dan komplementer.
               </div>
               <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
                 <strong class="text-slate-900 block mb-1"
                   >2. Pelaku Ekonomi & Balas Jasa (Circular Flow):</strong
                 >
                 RTK menyediakan faktor produksi (tanah, tenaga kerja, modal,
-                <em>skill</em>) dan menerima balas jasa: sewa (<em>rent</em>),
-                upah (<em>wage</em>), bunga (<em>interest</em>), laba
+                keahlian) dan menerima balas jasa: sewa (<em>rent</em>), upah
+                (<em>wage</em>), bunga (<em>interest</em>), laba
                 (<em>profit</em>). RTP menghasilkan barang/jasa, RTG sebagai
                 regulator, dan MLN lewat ekspor-impor.
               </div>
               <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
                 <strong class="text-slate-900 block mb-1"
-                  >3. Ekonomi Agregat & Kebijakan Moneter-Fiskal:</strong
+                  >3. Ekonomi Agregat & Kebijakan Moneter:</strong
                 >
-                PDB vs PNB, pengendalian inflasi (demand-pull vs cost-push),
-                pengangguran, serta instrumen suku bunga (diskonto) dan cadangan
-                kas minimum bank umum.
+                PDB vs PNB, pengendalian laju inflasi (<em>demand-pull</em> vs
+                <em>cost-push</em>), pengangguran, serta instrumen suku bunga
+                (diskonto) dan cadangan kas minimum bank umum.
               </div>
             </div>
             <button
@@ -227,7 +244,7 @@
 
           <!-- KARTU 2: SOSIOLOGI -->
           <div
-            class="module-card bg-white rounded-2xl border border-slate-200 shadow-sm p-6 hover:shadow-md transition space-y-4"
+            class="module-card bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6 hover:shadow-md transition space-y-4"
             data-category="sosiologi"
           >
             <div
@@ -237,15 +254,17 @@
                 <span class="p-2 rounded-xl bg-violet-50 text-violet-600"
                   ><i data-lucide="users" class="w-5 h-5"></i
                 ></span>
-                <h3 class="font-extrabold text-slate-900 text-lg">Sosiologi</h3>
+                <h3 class="font-extrabold text-slate-900 text-base sm:text-lg">
+                  Sosiologi
+                </h3>
               </div>
               <span
-                class="text-[11px] font-bold px-2.5 py-1 bg-violet-50 text-violet-700 rounded-full border border-violet-200"
-                >5 Topik Utama</span
+                class="text-[10px] sm:text-[11px] font-bold px-2 py-0.5 sm:py-1 bg-violet-50 text-violet-700 rounded-full border border-violet-200"
+                >5 Topik</span
               >
             </div>
 
-            <div class="space-y-3 text-xs leading-relaxed text-slate-600">
+            <div class="space-y-2.5 text-xs leading-relaxed text-slate-600">
               <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
                 <strong class="text-slate-900 block mb-1"
                   >1. Interaksi Sosial & Tingkatan Norma:</strong
@@ -254,15 +273,15 @@
                 <em>Usage</em> (cara) &rarr; <em>Folkways</em> (kebiasaan)
                 &rarr; <em>Mores</em> (tata kelakuan) &rarr;
                 <em>Customs</em> (adat istiadat). Proses asosiatif (kerja sama,
-                asimilasi, akulturasi) vs disosiatif (konflik, kontravensi).
+                akulturasi) vs disosiatif (konflik, pertentangan).
               </div>
               <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
                 <strong class="text-slate-900 block mb-1"
                   >2. Lembaga Sosial (Institusi):</strong
                 >
                 Keluarga (sosialisasi primer & afeksi), Pendidikan (fungsi
-                manifes transfer ilmu & fungsi laten integrasi), Agama, dan
-                Politik dalam menjaga tertib sosial.
+                manifes transfer ilmu pengetahuan & fungsi laten pemeliharaan
+                integrasi), Agama, dan Politik dalam menjaga tertib sosial.
               </div>
               <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
                 <strong class="text-slate-900 block mb-1"
@@ -271,7 +290,7 @@
                 Mobilitas vertikal naik (<em>social climbing</em>), vertikal
                 turun (<em>social sinking</em>), intragenerasi vs antargenerasi.
                 Akomodasi konflik melalui arbitrase dan mediasi demi integrasi
-                bangsa.
+                bersama.
               </div>
             </div>
             <button
@@ -285,7 +304,7 @@
 
           <!-- KARTU 3: GEOGRAFI -->
           <div
-            class="module-card bg-white rounded-2xl border border-slate-200 shadow-sm p-6 hover:shadow-md transition space-y-4"
+            class="module-card bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6 hover:shadow-md transition space-y-4"
             data-category="geografi"
           >
             <div
@@ -295,32 +314,35 @@
                 <span class="p-2 rounded-xl bg-sky-50 text-sky-600"
                   ><i data-lucide="globe-2" class="w-5 h-5"></i
                 ></span>
-                <h3 class="font-extrabold text-slate-900 text-lg">Geografi</h3>
+                <h3 class="font-extrabold text-slate-900 text-base sm:text-lg">
+                  Geografi
+                </h3>
               </div>
               <span
-                class="text-[11px] font-bold px-2.5 py-1 bg-sky-50 text-sky-700 rounded-full border border-sky-200"
-                >4 Topik Utama</span
+                class="text-[10px] sm:text-[11px] font-bold px-2 py-0.5 sm:py-1 bg-sky-50 text-sky-700 rounded-full border border-sky-200"
+                >4 Topik</span
               >
             </div>
 
-            <div class="space-y-3 text-xs leading-relaxed text-slate-600">
+            <div class="space-y-2.5 text-xs leading-relaxed text-slate-600">
               <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
                 <strong class="text-slate-900 block mb-1"
                   >1. Letak Astronomis & Geologis Indonesia:</strong
                 >
-                6° LU – 11° LS dan 95° BT – 141° BT (Iklim tropis, 3 zona
-                waktu). Pertemuan lempeng Indo-Australia, Eurasia, dan Pasifik
-                yang menciptakan busur vulkanik aktif (<em>Ring of Fire</em>)
-                dan potensi gempa bumi.
+                6° LU – 11° LS dan 95° BT – 141° BT (Iklim tropis, curah hujan
+                tinggi, 3 zona waktu). Pertemuan lempeng Indo-Australia,
+                Eurasia, dan Pasifik yang membentuk cincin api aktif (<em
+                  >Ring of Fire</em
+                >).
               </div>
               <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
                 <strong class="text-slate-900 block mb-1"
                   >2. Biogeografi & Garis Pemisah Fauna:</strong
                 >
                 Garis Wallace memisahkan fauna Asiatis (gajah, badak, harimau)
-                dengan Peralihan (anoa, komodo, babirusa). Garis Weber/Lydekker
-                memisahkan fauna Peralihan dengan fauna Australis (cendrawasih,
-                kangguru pohon).
+                dengan Peralihan (anoa, komodo, babirusa). Garis Weber
+                memisahkan fauna Peralihan dengan fauna Australis (burung
+                cendrawasih, kangguru pohon).
               </div>
               <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
                 <strong class="text-slate-900 block mb-1"
@@ -329,7 +351,7 @@
                 <em>Regional Complementarity</em> (saling melengkapi surplus
                 SDA), <em>Intervening Opportunity</em> (peluang alternatif
                 pengganti), dan <em>Spatial Transferability</em> (kemudahan
-                transportasi).
+                pemindahan barang).
               </div>
             </div>
             <button
@@ -343,7 +365,7 @@
 
           <!-- KARTU 4: SEJARAH -->
           <div
-            class="module-card bg-white rounded-2xl border border-slate-200 shadow-sm p-6 hover:shadow-md transition space-y-4"
+            class="module-card bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6 hover:shadow-md transition space-y-4"
             data-category="sejarah"
           >
             <div
@@ -353,42 +375,42 @@
                 <span class="p-2 rounded-xl bg-amber-50 text-amber-600"
                   ><i data-lucide="landmark" class="w-5 h-5"></i
                 ></span>
-                <h3 class="font-extrabold text-slate-900 text-lg">
+                <h3 class="font-extrabold text-slate-900 text-base sm:text-lg">
                   Sejarah Indonesia
                 </h3>
               </div>
               <span
-                class="text-[11px] font-bold px-2.5 py-1 bg-amber-50 text-amber-700 rounded-full border border-amber-200"
-                >5 Babak Penting</span
+                class="text-[10px] sm:text-[11px] font-bold px-2 py-0.5 sm:py-1 bg-amber-50 text-amber-700 rounded-full border border-amber-200"
+                >5 Babak</span
               >
             </div>
 
-            <div class="space-y-3 text-xs leading-relaxed text-slate-600">
+            <div class="space-y-2.5 text-xs leading-relaxed text-slate-600">
               <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
                 <strong class="text-slate-900 block mb-1"
                   >1. Zaman Praaksara & Megalitikum:</strong
                 >
-                Paleolitikum (<em>chopper</em> batu kasar) &rarr; Mesolitikum
-                (<em>kjokkenmoddinger</em>) &rarr; Neolitikum (beliung persegi
-                halus, bercocok tanam) &rarr; Megalitikum (Dolmen untuk sesaji,
-                Menhir pemujaan roh, Sarkofagus peti batu).
+                Paleolitikum (kapak perimbas) &rarr; Mesolitikum (sampah dapur
+                kerang) &rarr; Neolitikum (beliung persegi, bercocok tanam)
+                &rarr; Megalitikum (Dolmen untuk sesaji, Menhir tiang batu
+                pemujaan roh, Sarkofagus peti batu).
               </div>
               <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
                 <strong class="text-slate-900 block mb-1"
                   >2. Era Kolonial & Kebangkitan Nasional:</strong
                 >
                 Motivasi 3G, Tanam Paksa (<em>Cultuurstelsel</em>) 1830, hingga
-                Politik Etis 1901 (Irigasi, Emigrasi, Edukasi). Poin edukasi
-                melahirkan kaum elite pergerakan modern: Budi Utomo (1908) dan
-                Sumpah Pemuda (1928).
+                Politik Etis 1901 (Irigasi, Emigrasi, Edukasi). Edukasi
+                melahirkan generasi cerdik pandai pendiri organisasi modern Budi
+                Utomo (1908).
               </div>
               <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
                 <strong class="text-slate-900 block mb-1"
                   >3. Kemerdekaan hingga Era Reformasi 1998:</strong
                 >
-                Diplomasi KMB 1949, Demokrasi Terpimpin, Orde Baru (stabilitas,
-                Dwifungsi ABRI, Repelita), hingga krisis moneter 1997 yang
-                mendorong lahirnya Era Reformasi pada 21 Mei 1998.
+                Diplomasi KMB 1949, Demokrasi Terpimpin, Orde Baru (swasembada
+                pangan, Dwifungsi ABRI), hingga krisis moneter yang memicu
+                lahirnya Era Reformasi pada 21 Mei 1998.
               </div>
             </div>
             <button
@@ -409,29 +431,29 @@
         <!-- Area Intro CBT -->
         <div
           id="cbt-intro"
-          class="max-w-xl mx-auto bg-white rounded-2xl border border-slate-200 shadow-md p-8 text-center space-y-6"
+          class="max-w-md mx-auto bg-white rounded-2xl border border-slate-200 shadow-md p-6 sm:p-8 text-center space-y-5"
         >
           <div
-            class="w-16 h-16 bg-indigo-50 text-indigo-600 rounded-2xl mx-auto flex items-center justify-center shadow-inner"
+            class="w-14 h-14 bg-indigo-50 text-indigo-600 rounded-2xl mx-auto flex items-center justify-center shadow-inner"
           >
-            <i data-lucide="file-check-2" class="w-8 h-8"></i>
+            <i data-lucide="file-check-2" class="w-7 h-7"></i>
           </div>
           <div>
             <span
-              class="text-xs font-bold text-indigo-600 uppercase tracking-widest block mb-1"
+              class="text-[10px] font-bold text-indigo-600 uppercase tracking-widest block mb-1"
               >Simulasi Ujian Resmi</span
             >
-            <h2 class="text-2xl font-black text-slate-900">
-              Ujian CBT KSR IPS Terpadu
+            <h2 class="text-xl sm:text-2xl font-black text-slate-900">
+              Ujian CBT KSR IPS
             </h2>
-            <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+            <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">
               Simulasi berisi 20 butir soal HOTS yang mencakup materi Ekonomi,
               Sosiologi, Geografi, dan Sejarah.
             </p>
           </div>
 
           <div
-            class="bg-slate-50 rounded-xl p-4 border border-slate-200 text-xs text-left space-y-2 text-slate-700"
+            class="bg-slate-50 rounded-xl p-3.5 border border-slate-200 text-xs text-left space-y-2 text-slate-700"
           >
             <div
               class="font-bold text-slate-900 pb-1 border-b border-slate-200"
@@ -460,7 +482,7 @@
 
           <button
             onclick="startCbtExam()"
-            class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-6 rounded-xl transition shadow-md flex items-center justify-center gap-2"
+            class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-xl transition shadow-md flex items-center justify-center gap-2 text-xs sm:text-sm"
           >
             Mulai Ujian Sekarang
             <i data-lucide="arrow-right" class="w-4 h-4"></i>
@@ -468,124 +490,135 @@
         </div>
 
         <!-- Area Pelaksanaan Ujian CBT -->
-        <div id="cbt-running" class="hidden space-y-6">
+        <div id="cbt-running" class="hidden space-y-4 sm:space-y-6">
           <!-- CBT Top Status Bar -->
           <div
-            class="bg-white border border-slate-200 rounded-2xl px-6 py-3.5 shadow-sm flex items-center justify-between"
+            class="bg-white border border-slate-200 rounded-2xl px-4 sm:px-6 py-3 shadow-xs flex items-center justify-between gap-2"
           >
             <div>
               <span
                 id="cbt-badge-subject"
-                class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200"
+                class="text-[10px] sm:text-xs font-bold px-2.5 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200"
               >
                 Bidang: Ekonomi
               </span>
             </div>
             <div
               id="cbt-timer"
-              class="flex items-center gap-2 px-4 py-1.5 rounded-xl border border-slate-300 font-mono font-bold text-sm bg-slate-50 text-slate-700"
+              class="flex items-center gap-1.5 px-3 py-1 sm:px-4 sm:py-1.5 rounded-xl border border-slate-300 font-mono font-bold text-xs sm:text-sm bg-slate-50 text-slate-700"
             >
-              <i data-lucide="clock" class="w-4 h-4 text-indigo-600"></i>
+              <i
+                data-lucide="clock"
+                class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-indigo-600"
+              ></i>
               <span id="timer-display">20:00</span>
             </div>
           </div>
 
           <!-- CBT Main Workspace -->
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6">
             <!-- Question Box (8 cols) -->
             <div
-              class="lg:col-span-8 bg-white rounded-2xl border border-slate-200 shadow-sm p-6 flex flex-col justify-between min-h-[460px]"
+              class="lg:col-span-8 bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6 flex flex-col justify-between min-h-[420px]"
             >
               <div>
                 <div
-                  class="flex items-center justify-between pb-4 border-b border-slate-100 mb-5"
+                  class="flex items-center justify-between pb-3 sm:pb-4 border-b border-slate-100 mb-4 sm:mb-5"
                 >
                   <span
                     id="question-number-lbl"
-                    class="font-bold text-xs text-slate-400 uppercase tracking-wider"
+                    class="font-bold text-[11px] sm:text-xs text-slate-400 uppercase tracking-wider"
                     >Soal No 1 dari 20</span
                   >
                   <button
                     onclick="toggleDoubtful()"
                     id="doubtful-btn"
-                    class="px-3 py-1.5 rounded-lg border border-slate-300 text-xs font-semibold text-slate-600 hover:bg-slate-50 flex items-center gap-1.5 transition"
+                    class="px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg border border-slate-300 text-[11px] sm:text-xs font-semibold text-slate-600 hover:bg-slate-50 flex items-center gap-1 transition"
                   >
-                    <i data-lucide="alert-circle" class="w-3.5 h-3.5"></i>
-                    <span>Tandai Ragu-Ragu</span>
+                    <i
+                      data-lucide="alert-circle"
+                      class="w-3 h-3 sm:w-3.5 sm:h-3.5"
+                    ></i>
+                    <span>Ragu-Ragu</span>
                   </button>
                 </div>
 
                 <!-- Teks Soal -->
                 <p
                   id="question-text"
-                  class="text-base md:text-lg font-semibold text-slate-800 leading-relaxed mb-6"
+                  class="text-sm sm:text-base font-semibold text-slate-800 leading-relaxed mb-5"
                 >
                   Memuat teks pertanyaan...
                 </p>
 
                 <!-- Opsi Pilihan Ganda -->
-                <div id="options-container" class="space-y-3">
+                <div id="options-container" class="space-y-2.5">
                   <!-- Disuntikkan via JS -->
                 </div>
               </div>
 
-              <!-- Tombol Navigasi Bawah -->
+              <!-- Tombol Navigasi Bawah Responsif -->
               <div
-                class="flex items-center justify-between pt-6 border-t border-slate-100 mt-8"
+                class="flex items-center justify-between pt-4 sm:pt-6 border-t border-slate-100 mt-6 sm:mt-8 gap-2"
               >
                 <button
                   onclick="prevQuestion()"
                   id="btn-prev"
-                  class="px-4 py-2 rounded-xl border border-slate-300 text-slate-700 text-xs font-semibold hover:bg-slate-50 flex items-center gap-1 disabled:opacity-40"
+                  class="px-3 sm:px-4 py-2 rounded-xl border border-slate-300 text-slate-700 text-xs font-semibold hover:bg-slate-50 flex items-center gap-1 disabled:opacity-40"
                 >
-                  <i data-lucide="chevron-left" class="w-4 h-4"></i> Sebelumnya
+                  <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                  <span class="hidden sm:inline">Sebelumnya</span>
                 </button>
 
                 <button
                   onclick="showSubmitModal()"
-                  class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-sm flex items-center gap-1.5 transition"
+                  class="px-3.5 sm:px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-xs flex items-center gap-1.5 transition"
                 >
-                  <i data-lucide="check-circle-2" class="w-4 h-4"></i> Kumpulkan
-                  Lembar Ujian
+                  <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i>
+                  <span>Kumpulkan</span>
                 </button>
 
                 <button
                   onclick="nextQuestion()"
                   id="btn-next"
-                  class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold flex items-center gap-1 shadow-sm"
+                  class="px-3 sm:px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold flex items-center gap-1 shadow-xs"
                 >
-                  Berikutnya <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                  <span class="hidden sm:inline">Berikutnya</span>
+                  <i data-lucide="chevron-right" class="w-4 h-4"></i>
                 </button>
               </div>
             </div>
 
             <!-- Sidebar Kisi Soal (4 cols) -->
             <div
-              class="lg:col-span-4 bg-white rounded-2xl border border-slate-200 shadow-sm p-6 flex flex-col"
+              class="lg:col-span-4 bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6 flex flex-col"
             >
               <h3
-                class="font-bold text-sm text-slate-800 pb-3 border-b border-slate-100 mb-4"
+                class="font-bold text-xs sm:text-sm text-slate-800 pb-2.5 border-b border-slate-100 mb-3.5"
               >
                 Navigasi Kisi Soal
               </h3>
 
-              <div id="grid-sheet" class="grid grid-cols-5 gap-2 mb-6">
+              <div
+                id="grid-sheet"
+                class="grid grid-cols-5 sm:grid-cols-5 gap-2 mb-4"
+              >
                 <!-- Tombol Nomor 1-20 via JS -->
               </div>
 
               <div
-                class="mt-auto pt-4 border-t border-slate-100 text-xs space-y-2 text-slate-600"
+                class="mt-auto pt-3 border-t border-slate-100 text-[11px] sm:text-xs space-y-1.5 text-slate-600"
               >
                 <div class="flex items-center gap-2">
-                  <span class="w-3.5 h-3.5 rounded bg-emerald-600"></span>
-                  <span>Sudah Dijawab</span>
+                  <span class="w-3 h-3 rounded bg-emerald-600"></span>
+                  <span>Dijawab</span>
                 </div>
                 <div class="flex items-center gap-2">
-                  <span class="w-3.5 h-3.5 rounded bg-amber-400"></span>
-                  <span>Ditandai Ragu-Ragu</span>
+                  <span class="w-3 h-3 rounded bg-amber-400"></span>
+                  <span>Ragu-Ragu</span>
                 </div>
                 <div class="flex items-center gap-2">
-                  <span class="w-3.5 h-3.5 rounded bg-slate-200"></span>
+                  <span class="w-3 h-3 rounded bg-slate-200"></span>
                   <span>Belum Dijawab</span>
                 </div>
               </div>
@@ -594,98 +627,113 @@
         </div>
 
         <!-- Area Hasil Ujian & Diagnostik -->
-        <div id="cbt-result" class="hidden max-w-4xl mx-auto space-y-6">
+        <div
+          id="cbt-result"
+          class="hidden max-w-4xl mx-auto space-y-4 sm:space-y-6"
+        >
           <!-- Kartu Medali -->
           <div
-            class="bg-white rounded-2xl border border-slate-200 shadow-sm p-8 text-center space-y-4"
+            class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 sm:p-8 text-center space-y-3 sm:space-y-4"
           >
             <div
               id="medal-icon-box"
-              class="w-16 h-16 rounded-full mx-auto flex items-center justify-center text-3xl shadow-sm"
+              class="w-14 h-14 sm:w-16 sm:h-16 rounded-full mx-auto flex items-center justify-center text-3xl shadow-xs"
             >
               🏆
             </div>
             <div>
               <span
-                class="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-1"
+                class="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-widest block mb-1"
                 >Hasil Evaluasi Resmi</span
               >
               <h2
                 id="result-medal-title"
-                class="text-2xl font-black text-slate-900"
+                class="text-xl sm:text-2xl font-black text-slate-900"
               >
                 Peraih Medali Emas
               </h2>
               <p class="text-xs text-slate-500 mt-1 max-w-md mx-auto">
-                Perhitungan nilai disesuaikan dengan formula baku KSR/Olimpiade
-                Sains (Benar +4, Salah -1).
+                Perhitungan nilai baku KSR/Olimpiade Sains (Benar +4, Salah -1).
               </p>
             </div>
 
             <div
-              class="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-2xl mx-auto pt-2"
+              class="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 max-w-2xl mx-auto pt-2"
             >
-              <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                <span class="text-[11px] text-slate-500 block">Total Poin</span>
-                <span id="stat-score" class="text-xl font-black text-indigo-700"
+              <div
+                class="p-2.5 sm:p-3 bg-slate-50 rounded-xl border border-slate-200"
+              >
+                <span class="text-[10px] text-slate-500 block">Total Poin</span>
+                <span
+                  id="stat-score"
+                  class="text-lg sm:text-xl font-black text-indigo-700"
                   >0 / 80</span
                 >
               </div>
               <div
-                class="p-3 bg-emerald-50 rounded-xl border border-emerald-200"
+                class="p-2.5 sm:p-3 bg-emerald-50 rounded-xl border border-emerald-200"
               >
-                <span class="text-[11px] text-emerald-600 block"
+                <span class="text-[10px] text-emerald-600 block"
                   >Benar (+4)</span
                 >
                 <span
                   id="stat-correct"
-                  class="text-xl font-black text-emerald-700"
+                  class="text-lg sm:text-xl font-black text-emerald-700"
                   >0 Soal</span
                 >
               </div>
-              <div class="p-3 bg-rose-50 rounded-xl border border-rose-200">
-                <span class="text-[11px] text-rose-600 block">Salah (-1)</span>
-                <span id="stat-wrong" class="text-xl font-black text-rose-700"
+              <div
+                class="p-2.5 sm:p-3 bg-rose-50 rounded-xl border border-rose-200"
+              >
+                <span class="text-[10px] text-rose-600 block">Salah (-1)</span>
+                <span
+                  id="stat-wrong"
+                  class="text-lg sm:text-xl font-black text-rose-700"
                   >0 Soal</span
                 >
               </div>
-              <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                <span class="text-[11px] text-slate-500 block">Kosong (0)</span>
-                <span id="stat-empty" class="text-xl font-black text-slate-700"
+              <div
+                class="p-2.5 sm:p-3 bg-slate-50 rounded-xl border border-slate-200"
+              >
+                <span class="text-[10px] text-slate-500 block">Kosong (0)</span>
+                <span
+                  id="stat-empty"
+                  class="text-lg sm:text-xl font-black text-slate-700"
                   >0 Soal</span
                 >
               </div>
             </div>
 
-            <div class="flex items-center justify-center gap-3 pt-4">
+            <div
+              class="flex flex-col sm:flex-row items-center justify-center gap-2 pt-3"
+            >
               <button
                 onclick="openReviewMode()"
-                class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs flex items-center gap-2 shadow-sm"
+                class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-xs"
               >
-                <i data-lucide="eye" class="w-4 h-4"></i> Buka Pembahasan
-                Mendalam
+                <i data-lucide="eye" class="w-4 h-4"></i> Buka Pembahasan Soal
               </button>
               <button
                 onclick="startCbtExam()"
-                class="px-5 py-2.5 rounded-xl border border-slate-300 text-slate-700 font-bold text-xs hover:bg-slate-50 flex items-center gap-2"
+                class="w-full sm:w-auto px-5 py-2.5 rounded-xl border border-slate-300 text-slate-700 font-bold text-xs hover:bg-slate-50 flex items-center justify-center gap-2"
               >
-                <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Coba Ujian Lagi
+                <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Ulangi Simulasi
               </button>
             </div>
           </div>
 
           <!-- Diagnostik Per Mapel -->
           <div
-            class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-4"
+            class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6 space-y-4"
           >
             <div
-              class="flex items-center gap-2 pb-3 border-b border-slate-100 font-extrabold text-sm text-slate-800"
+              class="flex items-center gap-2 pb-2.5 border-b border-slate-100 font-extrabold text-xs sm:text-sm text-slate-800"
             >
               <i data-lucide="bar-chart-2" class="w-4 h-4 text-indigo-600"></i>
               <span>Analisis Performa Tiap Bidang Studi</span>
             </div>
 
-            <div id="diagnostic-bars" class="space-y-4">
+            <div id="diagnostic-bars" class="space-y-3.5">
               <!-- Disuntikkan JS -->
             </div>
           </div>
@@ -694,13 +742,13 @@
         <!-- Area Review Pembahasan -->
         <div id="cbt-review" class="hidden max-w-3xl mx-auto space-y-4">
           <div
-            class="flex items-center justify-between bg-white p-4 rounded-xl border border-slate-200 shadow-sm"
+            class="flex items-center justify-between bg-white p-3.5 sm:p-4 rounded-xl border border-slate-200 shadow-xs"
           >
             <div>
-              <h3 class="font-extrabold text-slate-900 text-sm">
+              <h3 class="font-extrabold text-slate-900 text-xs sm:text-sm">
                 Review & Pembahasan Ilmiah Soal
               </h3>
-              <p class="text-xs text-slate-500">
+              <p class="text-[11px] text-slate-500">
                 Pelajari konsep di balik setiap kunci jawaban
               </p>
             </div>
@@ -708,11 +756,11 @@
               onclick="backToResult()"
               class="text-xs font-bold px-3 py-1.5 bg-slate-100 hover:bg-slate-200 rounded-lg text-slate-700"
             >
-              Kembali ke Skor
+              Skor
             </button>
           </div>
 
-          <div id="review-container" class="space-y-4">
+          <div id="review-container" class="space-y-3 sm:space-y-4">
             <!-- Disuntikkan JS -->
           </div>
         </div>
@@ -721,21 +769,24 @@
       <!-- ========================================== -->
       <!-- TAB 3: TANYA GURU (AI TUTOR INTERAKTIF) -->
       <!-- ========================================== -->
-      <div id="tab-tanya" class="hidden max-w-3xl mx-auto space-y-6">
+      <div
+        id="tab-tanya"
+        class="hidden max-w-3xl mx-auto space-y-4 sm:space-y-6"
+      >
         <div
-          class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-4"
+          class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6 space-y-4"
         >
           <div class="flex items-center gap-3 pb-3 border-b border-slate-100">
             <div
-              class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center"
+              class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center flex-shrink-0"
             >
               <i data-lucide="bot" class="w-5 h-5"></i>
             </div>
             <div>
-              <h2 class="font-extrabold text-slate-900 text-base">
+              <h2 class="font-extrabold text-slate-900 text-sm sm:text-base">
                 Tanya Guru IPS Virtual
               </h2>
-              <p class="text-xs text-slate-500">
+              <p class="text-[11px] sm:text-xs text-slate-500">
                 Ajukan pertanyaan seputar materi KSR kapan saja untuk penjelasan
                 cepat
               </p>
@@ -745,39 +796,39 @@
           <!-- Chat Bubble Log -->
           <div
             id="chat-box"
-            class="h-80 overflow-y-auto custom-scroll space-y-3 p-3 bg-slate-50 rounded-xl border border-slate-100 text-xs"
+            class="h-72 sm:h-80 overflow-y-auto custom-scroll space-y-3 p-3 bg-slate-50 rounded-xl border border-slate-100 text-xs"
           >
-            <div class="flex items-start gap-2.5">
+            <div class="flex items-start gap-2 sm:gap-2.5">
               <div
-                class="w-7 h-7 rounded-lg bg-indigo-600 text-white flex-shrink-0 flex items-center justify-center font-bold text-[10px]"
+                class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-indigo-600 text-white flex-shrink-0 flex items-center justify-center font-bold text-[9px] sm:text-[10px]"
               >
                 GURU
               </div>
               <div
-                class="bg-white p-3.5 rounded-2xl rounded-tl-none border border-slate-200 text-slate-700 leading-relaxed shadow-2xs max-w-md"
+                class="bg-white p-3 rounded-2xl rounded-tl-none border border-slate-200 text-slate-700 leading-relaxed shadow-2xs max-w-[85%] sm:max-w-md"
               >
-                Halo! Ada topik IPS yang masih membingungkan di modul? Kamu bisa
-                tanyakan tentang
+                Halo! Ada konsep IPS yang ingin kamu tanyakan? Coba ketik
+                tentang
                 <em
-                  >inflasi, teori masuknya hindu-buddha, garis wallace, faktor
-                  interaksi antarruang,</em
+                  >inflasi, teori hindu-buddha, garis wallace, faktor interaksi
+                  antarruang,</em
                 >
-                atau topik lainnya!
+                atau istilah lainnya!
               </div>
             </div>
           </div>
 
           <!-- Quick Prompts Chips -->
-          <div class="space-y-1.5 pt-2">
-            <span class="text-[11px] font-semibold text-slate-400 block"
+          <div class="space-y-1.5 pt-1">
+            <span class="text-[10px] font-semibold text-slate-400 block"
               >Pertanyaan Populer:</span
             >
-            <div class="flex flex-wrap gap-1.5">
+            <div class="flex gap-1.5 overflow-x-auto no-scrollbar pb-1">
               <button
                 onclick="
                   askPreset('Apa beda inflasi demand-pull dan cost-push?')
                 "
-                class="text-[11px] font-medium px-2.5 py-1 bg-slate-100 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg text-slate-600 transition"
+                class="flex-shrink-0 text-[11px] font-medium px-2.5 py-1 bg-slate-100 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg text-slate-600 transition"
               >
                 Inflasi Demand vs Cost-push
               </button>
@@ -785,19 +836,19 @@
                 onclick="
                   askPreset('Jelaskan teori masuknya Hindu Buddha ke Indonesia')
                 "
-                class="text-[11px] font-medium px-2.5 py-1 bg-slate-100 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg text-slate-600 transition"
+                class="flex-shrink-0 text-[11px] font-medium px-2.5 py-1 bg-slate-100 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg text-slate-600 transition"
               >
                 Teori Masuknya Hindu-Buddha
               </button>
               <button
                 onclick="askPreset('Apa fungsi garis Wallace dan Weber?')"
-                class="text-[11px] font-medium px-2.5 py-1 bg-slate-100 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg text-slate-600 transition"
+                class="flex-shrink-0 text-[11px] font-medium px-2.5 py-1 bg-slate-100 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg text-slate-600 transition"
               >
                 Garis Wallace & Weber
               </button>
               <button
                 onclick="askPreset('Apa itu mobilitas sosial antargenerasi?')"
-                class="text-[11px] font-medium px-2.5 py-1 bg-slate-100 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg text-slate-600 transition"
+                class="flex-shrink-0 text-[11px] font-medium px-2.5 py-1 bg-slate-100 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg text-slate-600 transition"
               >
                 Mobilitas Antargenerasi
               </button>
@@ -805,16 +856,16 @@
           </div>
 
           <!-- Input Bar -->
-          <form onsubmit="handleChatSubmit(event)" class="flex gap-2 pt-2">
+          <form onsubmit="handleChatSubmit(event)" class="flex gap-2 pt-1">
             <input
               type="text"
               id="chat-input"
-              placeholder="Ketik pertanyaanmu di sini..."
-              class="flex-1 px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition"
+              placeholder="Tanyakan materi..."
+              class="flex-1 px-3 sm:px-4 py-2 sm:py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition"
             />
             <button
               type="submit"
-              class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-bold text-xs flex items-center gap-1.5 shadow-sm transition"
+              class="px-4 py-2 sm:py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-bold text-xs flex items-center gap-1 shadow-xs transition"
             >
               <span>Kirim</span>
               <i data-lucide="send" class="w-3.5 h-3.5"></i>
@@ -830,7 +881,7 @@
       class="fixed inset-0 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-4 z-50 hidden"
     >
       <div
-        class="bg-white rounded-2xl max-w-sm w-full p-6 text-center space-y-4 shadow-xl border border-slate-100"
+        class="bg-white rounded-2xl max-w-xs sm:max-w-sm w-full p-5 sm:p-6 text-center space-y-4 shadow-xl border border-slate-100"
       >
         <div
           class="w-12 h-12 bg-amber-50 text-amber-600 rounded-xl mx-auto flex items-center justify-center"
@@ -838,24 +889,23 @@
           <i data-lucide="help-circle" class="w-6 h-6"></i>
         </div>
         <div>
-          <h3 class="font-extrabold text-base text-slate-900">
+          <h3 class="font-extrabold text-sm sm:text-base text-slate-900">
             Kumpulkan Ujian Sekarang?
           </h3>
           <p class="text-xs text-slate-500 mt-1 leading-relaxed">
-            Pastikan semua soal yang kamu rasa mampu telah terjawab. Soal salah
-            akan terkena penalti poin (-1).
+            Jawaban yang salah akan mendapatkan pengurangan nilai (-1 poin).
           </p>
         </div>
-        <div class="flex gap-2 pt-2">
+        <div class="flex gap-2 pt-1">
           <button
             onclick="closeSubmitModal()"
             class="flex-1 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-50"
           >
-            Periksa Lagi
+            Batal
           </button>
           <button
             onclick="confirmSubmitExam()"
-            class="flex-1 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow-sm"
+            class="flex-1 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow-xs"
           >
             Ya, Selesai
           </button>
@@ -1021,7 +1071,7 @@
           id: 11,
           subject: "Geografi",
           question:
-            "Indonesia terletak di zona pertemuan tiga lempeng tektonik aktif dunia. Tiga lempeng besar pembentuk busur vulkanik (*Ring of Fire*) di kepulauan Indonesia adalah...",
+            "Indonesia terletak di zona pertemuan tiga lempeng tektonik aktif dunia. Tiga lempeng besar pembentuk busur vulkanik (Ring of Fire) di kepulauan Indonesia adalah...",
           options: [
             "Lempeng Eurasia, Pasifik, dan Indo-Australia",
             "Lempeng Afrika, Pasifik, dan Antarktika",
@@ -1167,12 +1217,12 @@
       ];
 
       // --- 2. STATE APLIKASI CBT ---
-      let examActive = false;
       let currentQIdx = 0;
-      let userAnswers = {}; // { [id]: optionIndex }
-      let doubtfulAnswers = {}; // { [id]: boolean }
-      let examTime = 20 * 60; // 20 Menit
+      let userAnswers = {};
+      let doubtfulAnswers = {};
+      let examTime = 20 * 60;
       let examTimerInterval = null;
+      let activeQuestions = QUESTION_BANK;
 
       // --- TAB SWITCHER ---
       function switchTab(tabId) {
@@ -1205,10 +1255,10 @@
         document.querySelectorAll(".cat-btn").forEach((btn) => {
           if (btn.dataset.cat === cat) {
             btn.className =
-              "cat-btn px-3 py-1.5 rounded-lg bg-white text-indigo-600 shadow-xs";
+              "cat-btn flex-shrink-0 px-3 py-1.5 rounded-lg bg-white text-indigo-600 shadow-xs";
           } else {
             btn.className =
-              "cat-btn px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900";
+              "cat-btn flex-shrink-0 px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900";
           }
         });
 
@@ -1239,8 +1289,6 @@
       }
 
       // --- FITUR CBT: ENGINE & TIMER ---
-      let activeQuestions = QUESTION_BANK;
-
       function startCbtExam(filterSubject = null) {
         if (filterSubject) {
           activeQuestions = QUESTION_BANK.filter(
@@ -1299,7 +1347,7 @@
           btn.innerText = idx + 1;
           btn.onclick = () => loadQuestion(idx);
           btn.className =
-            "h-9 rounded-xl border text-xs font-bold transition flex items-center justify-center " +
+            "h-8 sm:h-9 rounded-xl border text-[11px] sm:text-xs font-bold transition flex items-center justify-center " +
             getGridBtnClass(idx);
           grid.appendChild(btn);
         });
@@ -1334,10 +1382,10 @@
         const doubtBtn = document.getElementById("doubtful-btn");
         if (doubtfulAnswers[q.id]) {
           doubtBtn.className =
-            "px-3 py-1.5 rounded-lg border border-amber-500 bg-amber-400 text-slate-900 text-xs font-bold flex items-center gap-1.5";
+            "px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg border border-amber-500 bg-amber-400 text-slate-900 text-[11px] sm:text-xs font-bold flex items-center gap-1";
         } else {
           doubtBtn.className =
-            "px-3 py-1.5 rounded-lg border border-slate-300 text-slate-600 hover:bg-slate-50 text-xs font-semibold flex items-center gap-1.5";
+            "px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg border border-slate-300 text-slate-600 hover:bg-slate-50 text-[11px] sm:text-xs font-semibold flex items-center gap-1";
         }
 
         // Render Options
@@ -1349,14 +1397,14 @@
           const isSelected = userAnswers[q.id] === oIdx;
           const btn = document.createElement("button");
           btn.onclick = () => selectOption(q.id, oIdx);
-          btn.className = `w-full text-left p-3.5 rounded-xl border text-xs md:text-sm font-medium transition flex items-start gap-3 ${
+          btn.className = `w-full text-left p-3 rounded-xl border text-xs sm:text-sm font-medium transition flex items-start gap-2.5 sm:gap-3 ${
             isSelected
               ? "border-indigo-600 bg-indigo-50/60 text-indigo-950 font-semibold shadow-xs"
               : "border-slate-200 bg-white hover:bg-slate-50 text-slate-700"
           }`;
 
           btn.innerHTML = `
-          <span class="w-6 h-6 flex-shrink-0 rounded-lg flex items-center justify-center font-bold text-xs ${
+          <span class="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0 rounded-lg flex items-center justify-center font-bold text-[11px] sm:text-xs ${
             isSelected
               ? "bg-indigo-600 text-white"
               : "bg-slate-100 text-slate-600"
@@ -1413,8 +1461,6 @@
       }
 
       // --- FITUR CBT: PERHITUNGAN SKOR & ANALITIK ---
-      let finalStats = {};
-
       function calculateDiagnostics() {
         let rawScore = 0;
         let correctCount = 0;
@@ -1454,15 +1500,15 @@
         let medalColor = "text-slate-700";
 
         if (percentage >= 80) {
-          medalTitle = "Peraih Medali Emas (Gold Medalist)";
+          medalTitle = "Peraih Medali Emas";
           medalIcon = "🥇";
           medalColor = "text-amber-500";
         } else if (percentage >= 65) {
-          medalTitle = "Peraih Medali Perak (Silver Medalist)";
+          medalTitle = "Peraih Medali Perak";
           medalIcon = "🥈";
           medalColor = "text-slate-400";
         } else if (percentage >= 50) {
-          medalTitle = "Peraih Medali Perunggu (Bronze Medalist)";
+          medalTitle = "Peraih Medali Perunggu";
           medalIcon = "🥉";
           medalColor = "text-amber-700";
         }
@@ -1470,7 +1516,7 @@
         document.getElementById("medal-icon-box").innerText = medalIcon;
         const titleEl = document.getElementById("result-medal-title");
         titleEl.innerText = medalTitle;
-        titleEl.className = `text-2xl font-black ${medalColor}`;
+        titleEl.className = `text-xl sm:text-2xl font-black ${medalColor}`;
 
         document.getElementById("stat-score").innerText =
           `${rawScore} / ${maxScore}`;
@@ -1495,15 +1541,15 @@
             <span class="text-slate-700">${subj}</span>
             <span class="${isWeak ? "text-rose-600" : "text-emerald-600"}">${data.correct} / ${data.total} Benar (${subPct}%)</span>
           </div>
-          <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+          <div class="w-full bg-slate-100 h-2 sm:h-2.5 rounded-full overflow-hidden">
             <div class="h-full rounded-full transition-all duration-700 ${isWeak ? "bg-rose-500" : "bg-emerald-500"}" style="width: ${subPct}%"></div>
           </div>
           ${
             isWeak
               ? `
             <div class="flex items-center justify-between pt-0.5">
-              <span class="text-[11px] text-rose-500 flex items-center gap-1"><i data-lucide="shield-alert" class="w-3.5 h-3.5"></i> Perlu penguatan materi di modul</span>
-              <button onclick="switchTab('modul'); filterCategory('${subj.toLowerCase()}')" class="text-[11px] text-indigo-600 font-semibold hover:underline">Buka Bab ${subj} &rarr;</button>
+              <span class="text-[10px] sm:text-[11px] text-rose-500 flex items-center gap-1"><i data-lucide="shield-alert" class="w-3.5 h-3.5"></i> Perlu penguatan materi</span>
+              <button onclick="switchTab('modul'); filterCategory('${subj.toLowerCase()}')" class="text-[10px] sm:text-[11px] text-indigo-600 font-semibold hover:underline">Buka Bab ${subj} &rarr;</button>
             </div>
           `
               : ""
@@ -1512,7 +1558,6 @@
           diagContainer.appendChild(row);
         });
 
-        finalStats = { rawScore, maxScore, correctCount, wrongCount };
         lucide.createIcons();
       }
 
@@ -1532,7 +1577,7 @@
 
           const card = document.createElement("div");
           card.className =
-            "bg-white rounded-xl border border-slate-200 p-5 shadow-sm space-y-3";
+            "bg-white rounded-xl border border-slate-200 p-4 sm:p-5 shadow-xs space-y-3";
           card.innerHTML = `
           <div class="flex items-center justify-between text-xs pb-2 border-b border-slate-100">
             <span class="font-bold text-slate-500">Soal No ${idx + 1} &bull; ${q.subject}</span>
@@ -1543,13 +1588,13 @@
                   ? "bg-emerald-100 text-emerald-700"
                   : "bg-rose-100 text-rose-700"
             }">
-              ${isEmpty ? "Tidak Dijawab (0)" : isCorrect ? "Benar (+4)" : "Salah (-1)"}
+              ${isEmpty ? "Kosong (0)" : isCorrect ? "Benar (+4)" : "Salah (-1)"}
             </span>
           </div>
 
-          <p class="text-sm font-semibold text-slate-800 leading-relaxed">${q.question}</p>
+          <p class="text-xs sm:text-sm font-semibold text-slate-800 leading-relaxed">${q.question}</p>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
             ${q.options
               .map((opt, oIdx) => {
                 const isKunci = oIdx === q.correct;
@@ -1562,8 +1607,8 @@
                   style = "bg-rose-50 border-rose-400 text-rose-950 font-bold";
 
                 return `
-                <div class="p-2.5 rounded-xl border flex items-center gap-2.5 ${style}">
-                  <span class="w-5 h-5 rounded flex items-center justify-center text-[10px] font-bold bg-white/80">${labels[oIdx]}</span>
+                <div class="p-2 sm:p-2.5 rounded-xl border flex items-center gap-2 ${style}">
+                  <span class="w-4 h-4 sm:w-5 sm:h-5 rounded flex items-center justify-center text-[10px] font-bold bg-white/80">${labels[oIdx]}</span>
                   <span>${opt}</span>
                 </div>
               `;
@@ -1648,7 +1693,7 @@
 
           let ans = matched
             ? matched.answer
-            : "Pertanyaan yang sangat bagus! Konsep ini berkaitan dengan hubungan manusia dan lingkungannya. Coba periksa kembali topik terkait di tab **Modul Materi** untuk pendalaman atau gunakan kata kunci seperti 'inflasi', 'teori hindu', 'garis wallace', atau 'mobilitas'.";
+            : "Pertanyaan yang sangat bagus! Konsep ini berkaitan dengan hubungan manusia dan lingkungannya. Coba periksa kembali topik terkait di tab Modul Materi untuk pendalaman atau gunakan kata kunci seperti 'inflasi', 'teori hindu', 'garis wallace', atau 'mobilitas'.";
 
           appendChatMessage("guru", ans);
         }, 500);
@@ -1664,13 +1709,13 @@
         const isGuru = sender === "guru";
 
         const wrap = document.createElement("div");
-        wrap.className = `flex items-start gap-2.5 ${isGuru ? "" : "flex-row-reverse"}`;
+        wrap.className = `flex items-start gap-2 ${isGuru ? "" : "flex-row-reverse"}`;
 
         wrap.innerHTML = `
-        <div class="w-7 h-7 rounded-lg ${isGuru ? "bg-indigo-600 text-white" : "bg-slate-800 text-white"} flex-shrink-0 flex items-center justify-center font-bold text-[10px]">
+        <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg ${isGuru ? "bg-indigo-600 text-white" : "bg-slate-800 text-white"} flex-shrink-0 flex items-center justify-center font-bold text-[9px] sm:text-[10px]">
           ${isGuru ? "GURU" : "KAMU"}
         </div>
-        <div class="p-3.5 rounded-2xl ${isGuru ? "bg-white rounded-tl-none border border-slate-200 text-slate-700" : "bg-indigo-600 text-white rounded-tr-none"} leading-relaxed shadow-2xs max-w-md whitespace-pre-line">
+        <div class="p-3 rounded-2xl ${isGuru ? "bg-white rounded-tl-none border border-slate-200 text-slate-700" : "bg-indigo-600 text-white rounded-tr-none"} leading-relaxed shadow-2xs max-w-[85%] sm:max-w-md whitespace-pre-line text-xs">
           ${text}
         </div>
       `;
