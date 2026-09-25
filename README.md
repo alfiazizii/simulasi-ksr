@@ -1,85 +1,157 @@
-# KSR IPS Pro CBT
+# KSR Master IPS SMP
 
-KSR IPS Pro CBT is a single-page web application designed for junior high school students preparing for IPS (Social Sciences) competency exams. The app combines interactive lessons, a virtual tutor, and a CBT-style quiz simulation to help learners study efficiently and practice in a structured way.
+KSR Master IPS SMP adalah aplikasi web interaktif yang dirancang untuk membantu siswa mempersiapkan kompetisi atau latihan soal IPS secara mandiri. Aplikasi ini menggabungkan modul belajar, simulasi CBT, dan tutor interaktif dalam satu antarmuka yang responsif.
 
-## Purpose
+## Tujuan Proyek
 
-This project aims to:
+Proyek ini dibuat untuk:
 
-- Provide learning modules for four IPS subjects: Ekonomi, Sosiologi, Geografi, and Sejarah
-- Support self-paced learning through organized study content
-- Allow students to ask simple conceptual questions through a built-in chatbot
-- Simulate a computerized test environment with scoring and review
+- menyediakan bahan belajar IPS yang terstruktur per mata pelajaran
+- membantu siswa memahami konsep melalui ringkasan materi
+- melatih kecepatan dan ketepatan menjawab soal dalam format CBT
+- memberi umpan balik hasil latihan secara langsung
+- menyediakan fitur tanya jawab singkat seperti guru virtual
 
-## Features
+## Fitur Utama
 
-- Home dashboard with quick access to major learning areas
-- Subject-based learning modules for:
-  - Ekonomi
-  - Sosiologi
-  - Geografi
-  - Sejarah
-- Chatbot assistant for IPS concepts and keyword-based explanations
-- CBT simulation with:
-  - timer
-  - question navigation
-  - marked doubtful answers
-  - answer scoring with penalty rules
-  - final score summary
-  - per-subject diagnostic analysis
-- Review screen with:
-  - correct/incorrect answers
-  - answer explanations
-  - discussion of conceptual understanding
-- Responsive layout for desktop and mobile devices
+### 1. Modul Materi IPS
 
-## Project Structure
+Aplikasi memiliki panel modul yang terbagi berdasarkan bidang utama:
 
-This project is a front-end app built as a single HTML file containing:
+- Ekonomi
+- Sosiologi
+- Geografi
+- Sejarah
 
-- module data
-- quiz data
-- chatbot knowledge base
-- UI components
-- app logic
-- React rendering code
+Setiap modul berisi:
 
-## Technologies Used
+- ringkasan konsep penting
+- topik-topik utama yang sering muncul pada kisi-kisi
+- penjelasan yang dibuat ringkas namun informatif
+- tombol untuk langsung memulai latihan soal sesuai bidang
 
-- HTML
+### 2. Fitur Pencarian dan Filter
+
+Pengguna dapat:
+
+- mencari topik atau istilah tertentu pada modul
+- memfilter modul berdasarkan kategori
+- melihat materi berdasarkan bidang tertentu
+
+Ini membuat proses belajar lebih cepat dan lebih fokus.
+
+### 3. Simulasi CBT
+
+Aplikasi ini memiliki fitur ujian berbasis komputer dengan mekanisme seperti ujian nyata:
+
+- timer 20 menit
+- soal berjumlah 20 item
+- navigasi antar soal
+- tombol pilihan jawaban
+- tombol "ragu-ragu" untuk menandai soal yang belum pasti
+- tampilan grid soal untuk melihat progres pengerjaan
+- auto-save jawaban pengguna ke state lokal
+
+### 4. Sistem Penilaian dan Diagnostik
+
+Setelah ujian selesai, aplikasi menghitung:
+
+- skor total
+- jumlah jawaban benar, salah, dan kosong
+- persentase pencapaian
+- medal/gelar berdasarkan hasil
+- analisis per mata pelajaran
+
+Diagnostik ini membantu siswa mengetahui bidang mana yang masih perlu diperkuat.
+
+### 5. Review Soal dan Pembahasan
+
+Setelah ujian, pengguna dapat membuka mode review untuk melihat:
+
+- soal yang sudah dijawab
+- jawaban benar vs salah
+- pembahasan konsep dari setiap pertanyaan
+- evaluasi berdasarkan materi pelajaran
+
+Fitur ini sangat berguna untuk belajar dari kesalahan, bukan sekadar melihat nilai.
+
+### 6. Tanya Guru (Chatbot Interaktif)
+
+Aplikasi juga menyediakan fitur tanya jawab berbasis kata kunci. Fitur ini:
+
+- menerima pertanyaan dari pengguna
+- mencari pola kata kunci dalam database pengetahuan
+- memberi jawaban singkat dan relevan tentang materi IPS
+- membantu siswa memahami konsep dasar tanpa harus membuka modul penuh
+
+Contoh topik yang didukung:
+
+- inflasi
+- mobilitas sosial
+- teori masuknya Hindu-Buddha
+- garis Wallace
+- politik etis
+- dan topik IPS umum lainnya
+
+### 7. Antarmuka Responsif
+
+Aplikasi dirancang agar tampil baik di:
+
+- desktop
+- tablet
+- smartphone
+
+Terdapat dua mode navigasi utama:
+
+- header navigasi untuk tampilan desktop
+- bottom navigation untuk tampilan mobile
+
+## Struktur Aplikasi
+
+Proyek ini merupakan aplikasi single-page front-end yang memuat:
+
+- HTML untuk struktur halaman
+- CSS/Tailwind untuk styling
+- JavaScript untuk logika aplikasi
+- React dan Babel untuk rendering komponen dinamis
+- Lucide Icons untuk ikon antarmuka
+
+## Teknologi yang Digunakan
+
+- HTML5
 - JavaScript
 - React
-- ReactDOM
 - Babel
-- Tailwind CSS (used via class names in the HTML)
+- Tailwind CSS
+- Lucide Icons
+- Google Fonts (Plus Jakarta Sans)
 
-## Usage
+## Cara Menjalankan
 
-1. Open the `index.html` file in a browser.
-2. Use the navigation to access:
-   - Home
-   - Modul Kisi-Kisi
-   - Tanya Guru
+1. Unduh atau clone repositori ini.
+2. Buka file `index.html` di browser modern.
+3. Pastikan koneksi internet tersedia karena aplikasi memanfaatkan CDN untuk Tailwind dan icon.
+4. Gunakan menu navigasi untuk mengakses:
+   - Modul Materi
    - Simulasi CBT
-3. Explore the study material by subject.
-4. Ask questions in the chatbot using relevant IPS keywords.
-5. Start the CBT simulation and complete the quiz.
-6. Review results and study the explanations provided.
+   - Tanya Guru
 
-## Notes
+## Catatan Penggunaan
 
-- The app is intended as an educational prototype and demo.
-- Quiz content and study material are static and embedded directly in the page.
-- The chatbot uses keyword matching to return relevant responses, so it works best with plain topic-based questions.
+- Aplikasi ini bersifat edukasi dan prototype pembelajaran.
+- Data soal, modul, dan knowledge base ditulis secara statis di dalam file HTML.
+- Chatbot menggunakan pencocokan kata kunci, sehingga jawaban terbaik akan muncul bila pertanyaan mengandung kata kunci yang relevan.
 
-## Recommended Setup
+## Lisensi
 
-For best results:
+Proyek ini dibuat untuk kebutuhan pembelajaran dan pengembangan pendidikan. Silakan gunakan dengan bijak dan sesuaikan izin penggunaan jika akan dikembangkan lebih lanjut untuk kebutuhan komersial atau publikasi formal.
 
-- Use a modern browser such as Chrome, Edge, or Firefox
-- Keep the app in a local folder and open `index.html` directly
-- Ensure internet access is available if external libraries are loaded via CDN
+## Ringkasan Singkat
 
-## License
+Aplikasi ini merupakan platform belajar IPS interaktif yang menitikberatkan pada:
 
-This project is intended for educational and personal use. Please check with the project owner before reusing it for commercial purposes.
+- belajar mandiri
+- latihan soal berbasis CBT
+- sambungan materi dan pembahasan
+- dukungan tutor virtual
+- pengalaman belajar yang cepat, ringkas, dan mudah diakses

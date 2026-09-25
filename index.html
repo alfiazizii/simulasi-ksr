@@ -3,1886 +3,1687 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Aplikasi Persiapan KSR IPS SMP</title>
-
-    <!-- Load Tailwind CSS -->
+    <title>KSR Master IPS SMP - Platform Persiapan Mandiri</title>
+    <!-- Tailwind CSS & Lucide Icons -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Load React and ReactDOM -->
-    <script
-      crossorigin
-      src="https://unpkg.com/react@18/umd/react.development.js"
-    ></script>
-    <script
-      crossorigin
-      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
-    ></script>
-
-    <!-- Load Babel for JSX -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <style>
       body {
-        font-family:
-          "Inter",
-          -apple-system,
-          BlinkMacSystemFont,
-          "Segoe UI",
-          Roboto,
-          Helvetica,
-          Arial,
-          sans-serif;
-        background-color: #f8fafc;
-        margin: 0;
-        padding: 0;
-        -webkit-tap-highlight-color: transparent;
+        font-family: "Plus Jakarta Sans", sans-serif;
       }
-
-      /* Custom scrollbar */
-      .custom-scrollbar::-webkit-scrollbar {
+      .custom-scroll::-webkit-scrollbar {
         width: 6px;
-        height: 6px;
       }
-      .custom-scrollbar::-webkit-scrollbar-track {
-        background: #f1f5f9;
-        border-radius: 4px;
-      }
-      .custom-scrollbar::-webkit-scrollbar-thumb {
+      .custom-scroll::-webkit-scrollbar-thumb {
         background: #cbd5e1;
         border-radius: 4px;
       }
-      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      .custom-scroll::-webkit-scrollbar-thumb:hover {
         background: #94a3b8;
-      }
-
-      /* Animations */
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(8px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      .animate-fade-in {
-        animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      }
-
-      @keyframes pulseAlert {
-        0%,
-        100% {
-          opacity: 1;
-        }
-        50% {
-          opacity: 0.55;
-        }
-      }
-      .animate-timer-warning {
-        animation: pulseAlert 1.2s infinite;
       }
     </style>
   </head>
-  <body>
-    <div id="root"></div>
+  <body
+    class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col"
+  >
+    <!-- NAVBAR UTAMA -->
+    <nav class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16 items-center">
+          <div class="flex items-center gap-3">
+            <div
+              class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-600 flex items-center justify-center text-white shadow-md shadow-indigo-100"
+            >
+              <i data-lucide="graduation-cap" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h1
+                class="font-extrabold text-base md:text-lg text-slate-900 leading-tight"
+              >
+                KSR Master IPS
+              </h1>
+              <p
+                class="text-[11px] font-semibold text-indigo-600 uppercase tracking-wider"
+              >
+                Persiapan Kompetisi Sains SMP 2026
+              </p>
+            </div>
+          </div>
 
-    <script type="text/babel">
-      const modulesData = {
-        ekonomi: {
-          title: "Ekonomi",
-          color: "bg-blue-600",
-          lightColor: "bg-blue-50",
-          textColor: "text-blue-800",
-          badge: "bg-blue-100 text-blue-700",
-          content: [
-            {
-              title: "Kebutuhan & Kelangkaan",
-              desc: "Kelangkaan (Scarcity) adalah masalah utama ekonomi di mana kebutuhan manusia tak terbatas sementara alat pemuasnya terbatas. Kebutuhan dibagi menurut intensitas (Primer, Sekunder, Tersier), sifat (Jasmani, Rohani), waktu (Sekarang, Masa Depan), dan subjek.",
-            },
-            {
-              title: "Pelaku Kegiatan Ekonomi",
-              desc: "Ada 4 pelaku: RTK (Konsumen & penyedia faktor produksi tanah/kerja/modal), RTP (Produsen & pemberi balas jasa upah/sewa/laba), Pemerintah (Pengatur regulasi, konsumen, & produsen BUMN), serta Masyarakat Luar Negeri (Ekspor & Impor).",
-            },
-            {
-              title: "Perekonomian Agregat (Makro)",
-              desc: "Membahas perekonomian skala negara. Topik utama meliputi Inflasi (kenaikan harga umum berkelanjutan), Pendapatan Nasional (PDB/GNP sebagai indikator kapasitas produksi), dan Pengangguran yang mempengaruhi daya beli masyarakat.",
-            },
-            {
-              title: "Pembangunan Ekonomi",
-              desc: "Berbeda dengan 'pertumbuhan' yang hanya melihat kenaikan angka output, pembangunan ekonomi menekankan perbaikan kualitas hidup: pengentasan kemiskinan, penurunan kesenjangan pendapatan, dan peningkatan Indeks Pembangunan Manusia (IPM).",
-            },
-          ],
-        },
-        sosiologi: {
-          title: "Sosiologi",
-          color: "bg-purple-600",
-          lightColor: "bg-purple-50",
-          textColor: "text-purple-800",
-          badge: "bg-purple-100 text-purple-700",
-          content: [
-            {
-              title: "Interaksi Sosial & Lingkungan",
-              desc: "Hubungan timbal balik manusia dengan lingkungan alam, sosial, budaya, dan ekonomi. Dalam dinamika pembangunan, proyek fisik seperti industrialisasi sering mengubah tatanan nilai dan relasi sosial warga.",
-            },
-            {
-              title: "Institusi Sosial (Kelembagaan)",
-              desc: "Sistem norma terstruktur untuk menjaga ketertiban. Lembaga Keluarga (sosialisasi primer & afeksi), Pendidikan (transfer ilmu & norma sekunder), Agama (moralitas), Ekonomi (kebutuhan dasar), Politik/Hukum (kewenangan & penegakan sanksi).",
-            },
-            {
-              title: "Pluralitas Masyarakat",
-              desc: "Kemajemukan bangsa Indonesia yang bersemboyan Bhinneka Tunggal Ika mencakup keragaman suku bangsa, ras, agama, bahasa daerah, dan mata pencaharian yang saling melengkapi.",
-            },
-            {
-              title: "Mobilitas, Konflik & Integrasi",
-              desc: "Mobilitas Vertikal (naik/turun status) dan Horizontal (status setara). Konflik dalam masyarakat majemuk ditangani melalui kompromi atau mediasi untuk memulihkan Integrasi Sosial (kesatuan menyeluruh).",
-            },
-          ],
-        },
-        geografi: {
-          title: "Geografi",
-          color: "bg-emerald-600",
-          lightColor: "bg-emerald-50",
-          textColor: "text-emerald-800",
-          badge: "bg-emerald-100 text-emerald-700",
-          content: [
-            {
-              title: "Kondisi Geografi Indonesia",
-              desc: "Astronomis: 6°LU-11°LS & 95°BT-141°BT (Tropis, 3 zona waktu). Geografis: Antara 2 benua & 2 samudra (jalur lintas perdagangan dunia). Geologis: Pertemuan 3 lempeng aktif (Eurasia, Indo-Australia, Pasifik) membuat tanah subur namun rawan gempa.",
-            },
-            {
-              title: "Interaksi Antarruang",
-              desc: "Tiga syarat utama: Saling Melengkapi (Regional Complementarity akibat surplus berbeda), Kesempatan Antara (Intervening Opportunity atau alternatif lain), dan Kemudahan Transfer (Transferability kelayakan jalur transportasi).",
-            },
-            {
-              title: "Karakteristik Benua Dunia",
-              desc: "Asia (terluas, populasi terbanyak), Amerika (dari kutub utara ke selatan), Eropa (didominasi negara maju), Afrika (Benua Hitam, gurun Sahara), Australia (benua terkecil yang hanya dihuni satu negara federal).",
-            },
-            {
-              title: "Interaksi Antarruang Asia & Global",
-              desc: "Dampak globalisasi di bidang Ekonomi (pasar bebas & investasi), Sosial (migrasi tenaga kerja), Budaya (penyebaran K-Pop & fast food), serta Politik (kerja sama regional ASEAN dan global PBB).",
-            },
-          ],
-        },
-        sejarah: {
-          title: "Sejarah",
-          color: "bg-amber-600",
-          lightColor: "bg-amber-50",
-          textColor: "text-amber-800",
-          badge: "bg-amber-100 text-amber-700",
-          content: [
-            {
-              title: "Masa Klasik Nusantara",
-              desc: "Masa Praaksara (food gathering hingga bercocok tanam, animisme, megalitikum), Masa Hindu-Buddha (akulturasi budaya, sistem kasta, kerajaan Sriwijaya & Majapahit), dan Masa Islam (kesetaraan tanpa kasta, kesultanan maritim, jalur rempah).",
-            },
-            {
-              title: "Kolonialisme Barat",
-              desc: "Kedatangan bangsa Eropa dimotori semboyan 3G (Gold, Glory, Gospel). Praktik monopoli dagang VOC serta Tanam Paksa (Cultuurstelsel) menyengsarakan rakyat tetapi memperkenalkan komoditas ekspor dan sistem upah.",
-            },
-            {
-              title: "Pergerakan Nasional",
-              desc: "Dampak Politik Etis pada bidang edukasi melahirkan kaum intelektual. Perjuangan bersenjata kedaerahan beralih ke perjuangan organisasi modern yang berpuncak pada Sumpah Pemuda 1928.",
-            },
-            {
-              title: "Kemerdekaan hingga Reformasi",
-              desc: "Masa perjuangan fisik & diplomasi (1945-1949), Orde Lama (dinamika demokrasi terpimpin), Orde Baru (fokus stabilitas & pembangunan terpusat), hingga Era Reformasi 1998 (demokrasi terbuka & otonomi daerah).",
-            },
-          ],
-        },
-      };
+          <!-- Navigation Tabs -->
+          <div class="flex items-center gap-1 md:gap-2">
+            <button
+              onclick="switchTab('modul')"
+              id="nav-modul"
+              class="nav-tab px-3.5 py-2 rounded-xl text-xs md:text-sm font-semibold transition flex items-center gap-2 bg-indigo-50 text-indigo-600 border border-indigo-200"
+            >
+              <i data-lucide="book-open" class="w-4 h-4"></i> Modul Materi
+            </button>
+            <button
+              onclick="switchTab('cbt')"
+              id="nav-cbt"
+              class="nav-tab px-3.5 py-2 rounded-xl text-xs md:text-sm font-semibold transition flex items-center gap-2 text-slate-600 hover:bg-slate-100"
+            >
+              <i data-lucide="timer" class="w-4 h-4"></i> Simulasi CBT
+            </button>
+            <button
+              onclick="switchTab('tanya')"
+              id="nav-tanya"
+              class="nav-tab px-3.5 py-2 rounded-xl text-xs md:text-sm font-semibold transition flex items-center gap-2 text-slate-600 hover:bg-slate-100"
+            >
+              <i data-lucide="message-square-text" class="w-4 h-4"></i> Tanya
+              Guru
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
 
-      const quizData = [
+    <!-- KONTEN CONTAINER -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8">
+      <!-- ========================================== -->
+      <!-- TAB 1: MODUL PEMBELAJARAN LENGKAP -->
+      <!-- ========================================== -->
+      <div id="tab-modul" class="space-y-6">
+        <!-- Search & Category Filters -->
+        <div
+          class="bg-white p-4 md:p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4"
+        >
+          <div>
+            <h2 class="text-xl font-extrabold text-slate-900">
+              Modul Lengkap Kisi-Kisi KSR IPS
+            </h2>
+            <p class="text-xs text-slate-500 mt-0.5">
+              Rangkuman terpadu standar kompetisi nasional jenjang SMP
+            </p>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="relative w-full md:w-64">
+              <i
+                data-lucide="search"
+                class="w-4 h-4 text-slate-400 absolute left-3 top-3"
+              ></i>
+              <input
+                type="text"
+                id="module-search"
+                oninput="filterModules()"
+                placeholder="Cari topik atau istilah..."
+                class="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition"
+              />
+            </div>
+            <div
+              class="flex gap-1 bg-slate-100 p-1 rounded-xl text-xs font-semibold"
+            >
+              <button
+                onclick="filterCategory('all')"
+                class="cat-btn px-3 py-1.5 rounded-lg bg-white text-indigo-600 shadow-xs"
+                data-cat="all"
+              >
+                Semua
+              </button>
+              <button
+                onclick="filterCategory('ekonomi')"
+                class="cat-btn px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900"
+                data-cat="ekonomi"
+              >
+                Ekonomi
+              </button>
+              <button
+                onclick="filterCategory('sosiologi')"
+                class="cat-btn px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900"
+                data-cat="sosiologi"
+              >
+                Sosiologi
+              </button>
+              <button
+                onclick="filterCategory('geografi')"
+                class="cat-btn px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900"
+                data-cat="geografi"
+              >
+                Geografi
+              </button>
+              <button
+                onclick="filterCategory('sejarah')"
+                class="cat-btn px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900"
+                data-cat="sejarah"
+              >
+                Sejarah
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grid Modul Cards -->
+        <div
+          id="module-container"
+          class="grid grid-cols-1 md:grid-cols-2 gap-6"
+        >
+          <!-- KARTU 1: EKONOMI -->
+          <div
+            class="module-card bg-white rounded-2xl border border-slate-200 shadow-sm p-6 hover:shadow-md transition space-y-4"
+            data-category="ekonomi"
+          >
+            <div
+              class="flex items-center justify-between pb-3 border-b border-slate-100"
+            >
+              <div class="flex items-center gap-2.5">
+                <span class="p-2 rounded-xl bg-emerald-50 text-emerald-600"
+                  ><i data-lucide="trending-up" class="w-5 h-5"></i
+                ></span>
+                <h3 class="font-extrabold text-slate-900 text-lg">
+                  Ilmu Ekonomi
+                </h3>
+              </div>
+              <span
+                class="text-[11px] font-bold px-2.5 py-1 bg-emerald-50 text-emerald-700 rounded-full border border-emerald-200"
+                >5 Topik Utama</span
+              >
+            </div>
+
+            <div class="space-y-3 text-xs leading-relaxed text-slate-600">
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
+                <strong class="text-slate-900 block mb-1"
+                  >1. Kelangkaan & Kebutuhan Manusia:</strong
+                >
+                Kelangkaan (<em>scarcity</em>) muncul karena alat pemuas
+                terbatas menghadapi kebutuhan tanpa batas. Klasifikasi
+                kebutuhan: primer, sekunder, tersier, sekarang vs masa depan,
+                serta barang substitusi & komplementer.
+              </div>
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
+                <strong class="text-slate-900 block mb-1"
+                  >2. Pelaku Ekonomi & Balas Jasa (Circular Flow):</strong
+                >
+                RTK menyediakan faktor produksi (tanah, tenaga kerja, modal,
+                <em>skill</em>) dan menerima balas jasa: sewa (<em>rent</em>),
+                upah (<em>wage</em>), bunga (<em>interest</em>), laba
+                (<em>profit</em>). RTP menghasilkan barang/jasa, RTG sebagai
+                regulator, dan MLN lewat ekspor-impor.
+              </div>
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
+                <strong class="text-slate-900 block mb-1"
+                  >3. Ekonomi Agregat & Kebijakan Moneter-Fiskal:</strong
+                >
+                PDB vs PNB, pengendalian inflasi (demand-pull vs cost-push),
+                pengangguran, serta instrumen suku bunga (diskonto) dan cadangan
+                kas minimum bank umum.
+              </div>
+            </div>
+            <button
+              onclick="startSubjectPractice('Ekonomi')"
+              class="w-full py-2.5 rounded-xl border border-emerald-300 text-emerald-700 bg-emerald-50 hover:bg-emerald-100 font-bold text-xs flex items-center justify-center gap-1.5 transition"
+            >
+              <i data-lucide="play" class="w-3.5 h-3.5"></i> Latihan Soal Khusus
+              Ekonomi
+            </button>
+          </div>
+
+          <!-- KARTU 2: SOSIOLOGI -->
+          <div
+            class="module-card bg-white rounded-2xl border border-slate-200 shadow-sm p-6 hover:shadow-md transition space-y-4"
+            data-category="sosiologi"
+          >
+            <div
+              class="flex items-center justify-between pb-3 border-b border-slate-100"
+            >
+              <div class="flex items-center gap-2.5">
+                <span class="p-2 rounded-xl bg-violet-50 text-violet-600"
+                  ><i data-lucide="users" class="w-5 h-5"></i
+                ></span>
+                <h3 class="font-extrabold text-slate-900 text-lg">Sosiologi</h3>
+              </div>
+              <span
+                class="text-[11px] font-bold px-2.5 py-1 bg-violet-50 text-violet-700 rounded-full border border-violet-200"
+                >5 Topik Utama</span
+              >
+            </div>
+
+            <div class="space-y-3 text-xs leading-relaxed text-slate-600">
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
+                <strong class="text-slate-900 block mb-1"
+                  >1. Interaksi Sosial & Tingkatan Norma:</strong
+                >
+                Syarat: Kontak sosial & Komunikasi. Tingkatan sanksi norma:
+                <em>Usage</em> (cara) &rarr; <em>Folkways</em> (kebiasaan)
+                &rarr; <em>Mores</em> (tata kelakuan) &rarr;
+                <em>Customs</em> (adat istiadat). Proses asosiatif (kerja sama,
+                asimilasi, akulturasi) vs disosiatif (konflik, kontravensi).
+              </div>
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
+                <strong class="text-slate-900 block mb-1"
+                  >2. Lembaga Sosial (Institusi):</strong
+                >
+                Keluarga (sosialisasi primer & afeksi), Pendidikan (fungsi
+                manifes transfer ilmu & fungsi laten integrasi), Agama, dan
+                Politik dalam menjaga tertib sosial.
+              </div>
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
+                <strong class="text-slate-900 block mb-1"
+                  >3. Mobilitas Sosial & Resolusi Konflik:</strong
+                >
+                Mobilitas vertikal naik (<em>social climbing</em>), vertikal
+                turun (<em>social sinking</em>), intragenerasi vs antargenerasi.
+                Akomodasi konflik melalui arbitrase dan mediasi demi integrasi
+                bangsa.
+              </div>
+            </div>
+            <button
+              onclick="startSubjectPractice('Sosiologi')"
+              class="w-full py-2.5 rounded-xl border border-violet-300 text-violet-700 bg-violet-50 hover:bg-violet-100 font-bold text-xs flex items-center justify-center gap-1.5 transition"
+            >
+              <i data-lucide="play" class="w-3.5 h-3.5"></i> Latihan Soal Khusus
+              Sosiologi
+            </button>
+          </div>
+
+          <!-- KARTU 3: GEOGRAFI -->
+          <div
+            class="module-card bg-white rounded-2xl border border-slate-200 shadow-sm p-6 hover:shadow-md transition space-y-4"
+            data-category="geografi"
+          >
+            <div
+              class="flex items-center justify-between pb-3 border-b border-slate-100"
+            >
+              <div class="flex items-center gap-2.5">
+                <span class="p-2 rounded-xl bg-sky-50 text-sky-600"
+                  ><i data-lucide="globe-2" class="w-5 h-5"></i
+                ></span>
+                <h3 class="font-extrabold text-slate-900 text-lg">Geografi</h3>
+              </div>
+              <span
+                class="text-[11px] font-bold px-2.5 py-1 bg-sky-50 text-sky-700 rounded-full border border-sky-200"
+                >4 Topik Utama</span
+              >
+            </div>
+
+            <div class="space-y-3 text-xs leading-relaxed text-slate-600">
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
+                <strong class="text-slate-900 block mb-1"
+                  >1. Letak Astronomis & Geologis Indonesia:</strong
+                >
+                6° LU – 11° LS dan 95° BT – 141° BT (Iklim tropis, 3 zona
+                waktu). Pertemuan lempeng Indo-Australia, Eurasia, dan Pasifik
+                yang menciptakan busur vulkanik aktif (<em>Ring of Fire</em>)
+                dan potensi gempa bumi.
+              </div>
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
+                <strong class="text-slate-900 block mb-1"
+                  >2. Biogeografi & Garis Pemisah Fauna:</strong
+                >
+                Garis Wallace memisahkan fauna Asiatis (gajah, badak, harimau)
+                dengan Peralihan (anoa, komodo, babirusa). Garis Weber/Lydekker
+                memisahkan fauna Peralihan dengan fauna Australis (cendrawasih,
+                kangguru pohon).
+              </div>
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
+                <strong class="text-slate-900 block mb-1"
+                  >3. Interaksi Antarruang (Edward Ullman):</strong
+                >
+                <em>Regional Complementarity</em> (saling melengkapi surplus
+                SDA), <em>Intervening Opportunity</em> (peluang alternatif
+                pengganti), dan <em>Spatial Transferability</em> (kemudahan
+                transportasi).
+              </div>
+            </div>
+            <button
+              onclick="startSubjectPractice('Geografi')"
+              class="w-full py-2.5 rounded-xl border border-sky-300 text-sky-700 bg-sky-50 hover:bg-sky-100 font-bold text-xs flex items-center justify-center gap-1.5 transition"
+            >
+              <i data-lucide="play" class="w-3.5 h-3.5"></i> Latihan Soal Khusus
+              Geografi
+            </button>
+          </div>
+
+          <!-- KARTU 4: SEJARAH -->
+          <div
+            class="module-card bg-white rounded-2xl border border-slate-200 shadow-sm p-6 hover:shadow-md transition space-y-4"
+            data-category="sejarah"
+          >
+            <div
+              class="flex items-center justify-between pb-3 border-b border-slate-100"
+            >
+              <div class="flex items-center gap-2.5">
+                <span class="p-2 rounded-xl bg-amber-50 text-amber-600"
+                  ><i data-lucide="landmark" class="w-5 h-5"></i
+                ></span>
+                <h3 class="font-extrabold text-slate-900 text-lg">
+                  Sejarah Indonesia
+                </h3>
+              </div>
+              <span
+                class="text-[11px] font-bold px-2.5 py-1 bg-amber-50 text-amber-700 rounded-full border border-amber-200"
+                >5 Babak Penting</span
+              >
+            </div>
+
+            <div class="space-y-3 text-xs leading-relaxed text-slate-600">
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
+                <strong class="text-slate-900 block mb-1"
+                  >1. Zaman Praaksara & Megalitikum:</strong
+                >
+                Paleolitikum (<em>chopper</em> batu kasar) &rarr; Mesolitikum
+                (<em>kjokkenmoddinger</em>) &rarr; Neolitikum (beliung persegi
+                halus, bercocok tanam) &rarr; Megalitikum (Dolmen untuk sesaji,
+                Menhir pemujaan roh, Sarkofagus peti batu).
+              </div>
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
+                <strong class="text-slate-900 block mb-1"
+                  >2. Era Kolonial & Kebangkitan Nasional:</strong
+                >
+                Motivasi 3G, Tanam Paksa (<em>Cultuurstelsel</em>) 1830, hingga
+                Politik Etis 1901 (Irigasi, Emigrasi, Edukasi). Poin edukasi
+                melahirkan kaum elite pergerakan modern: Budi Utomo (1908) dan
+                Sumpah Pemuda (1928).
+              </div>
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
+                <strong class="text-slate-900 block mb-1"
+                  >3. Kemerdekaan hingga Era Reformasi 1998:</strong
+                >
+                Diplomasi KMB 1949, Demokrasi Terpimpin, Orde Baru (stabilitas,
+                Dwifungsi ABRI, Repelita), hingga krisis moneter 1997 yang
+                mendorong lahirnya Era Reformasi pada 21 Mei 1998.
+              </div>
+            </div>
+            <button
+              onclick="startSubjectPractice('Sejarah')"
+              class="w-full py-2.5 rounded-xl border border-amber-300 text-amber-700 bg-amber-50 hover:bg-amber-100 font-bold text-xs flex items-center justify-center gap-1.5 transition"
+            >
+              <i data-lucide="play" class="w-3.5 h-3.5"></i> Latihan Soal Khusus
+              Sejarah
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- TAB 2: SIMULASI CBT STANDAR KSR -->
+      <!-- ========================================== -->
+      <div id="tab-cbt" class="hidden">
+        <!-- Area Intro CBT -->
+        <div
+          id="cbt-intro"
+          class="max-w-xl mx-auto bg-white rounded-2xl border border-slate-200 shadow-md p-8 text-center space-y-6"
+        >
+          <div
+            class="w-16 h-16 bg-indigo-50 text-indigo-600 rounded-2xl mx-auto flex items-center justify-center shadow-inner"
+          >
+            <i data-lucide="file-check-2" class="w-8 h-8"></i>
+          </div>
+          <div>
+            <span
+              class="text-xs font-bold text-indigo-600 uppercase tracking-widest block mb-1"
+              >Simulasi Ujian Resmi</span
+            >
+            <h2 class="text-2xl font-black text-slate-900">
+              Ujian CBT KSR IPS Terpadu
+            </h2>
+            <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+              Simulasi berisi 20 butir soal HOTS yang mencakup materi Ekonomi,
+              Sosiologi, Geografi, dan Sejarah.
+            </p>
+          </div>
+
+          <div
+            class="bg-slate-50 rounded-xl p-4 border border-slate-200 text-xs text-left space-y-2 text-slate-700"
+          >
+            <div
+              class="font-bold text-slate-900 pb-1 border-b border-slate-200"
+            >
+              Ketentuan Skor Kompetisi:
+            </div>
+            <div class="flex justify-between items-center">
+              <span>Jawaban Benar</span>
+              <span class="font-bold text-emerald-600">+4 Poin</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span>Jawaban Salah</span>
+              <span class="font-bold text-rose-600">-1 Poin (Penalti)</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span>Tidak Menjawab</span>
+              <span class="font-bold text-slate-500">0 Poin</span>
+            </div>
+            <div
+              class="flex justify-between items-center pt-1 border-t border-slate-200 font-semibold text-slate-900"
+            >
+              <span>Batas Waktu Pengerjaan</span>
+              <span class="text-indigo-600">20 Menit</span>
+            </div>
+          </div>
+
+          <button
+            onclick="startCbtExam()"
+            class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-6 rounded-xl transition shadow-md flex items-center justify-center gap-2"
+          >
+            Mulai Ujian Sekarang
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <!-- Area Pelaksanaan Ujian CBT -->
+        <div id="cbt-running" class="hidden space-y-6">
+          <!-- CBT Top Status Bar -->
+          <div
+            class="bg-white border border-slate-200 rounded-2xl px-6 py-3.5 shadow-sm flex items-center justify-between"
+          >
+            <div>
+              <span
+                id="cbt-badge-subject"
+                class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200"
+              >
+                Bidang: Ekonomi
+              </span>
+            </div>
+            <div
+              id="cbt-timer"
+              class="flex items-center gap-2 px-4 py-1.5 rounded-xl border border-slate-300 font-mono font-bold text-sm bg-slate-50 text-slate-700"
+            >
+              <i data-lucide="clock" class="w-4 h-4 text-indigo-600"></i>
+              <span id="timer-display">20:00</span>
+            </div>
+          </div>
+
+          <!-- CBT Main Workspace -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <!-- Question Box (8 cols) -->
+            <div
+              class="lg:col-span-8 bg-white rounded-2xl border border-slate-200 shadow-sm p-6 flex flex-col justify-between min-h-[460px]"
+            >
+              <div>
+                <div
+                  class="flex items-center justify-between pb-4 border-b border-slate-100 mb-5"
+                >
+                  <span
+                    id="question-number-lbl"
+                    class="font-bold text-xs text-slate-400 uppercase tracking-wider"
+                    >Soal No 1 dari 20</span
+                  >
+                  <button
+                    onclick="toggleDoubtful()"
+                    id="doubtful-btn"
+                    class="px-3 py-1.5 rounded-lg border border-slate-300 text-xs font-semibold text-slate-600 hover:bg-slate-50 flex items-center gap-1.5 transition"
+                  >
+                    <i data-lucide="alert-circle" class="w-3.5 h-3.5"></i>
+                    <span>Tandai Ragu-Ragu</span>
+                  </button>
+                </div>
+
+                <!-- Teks Soal -->
+                <p
+                  id="question-text"
+                  class="text-base md:text-lg font-semibold text-slate-800 leading-relaxed mb-6"
+                >
+                  Memuat teks pertanyaan...
+                </p>
+
+                <!-- Opsi Pilihan Ganda -->
+                <div id="options-container" class="space-y-3">
+                  <!-- Disuntikkan via JS -->
+                </div>
+              </div>
+
+              <!-- Tombol Navigasi Bawah -->
+              <div
+                class="flex items-center justify-between pt-6 border-t border-slate-100 mt-8"
+              >
+                <button
+                  onclick="prevQuestion()"
+                  id="btn-prev"
+                  class="px-4 py-2 rounded-xl border border-slate-300 text-slate-700 text-xs font-semibold hover:bg-slate-50 flex items-center gap-1 disabled:opacity-40"
+                >
+                  <i data-lucide="chevron-left" class="w-4 h-4"></i> Sebelumnya
+                </button>
+
+                <button
+                  onclick="showSubmitModal()"
+                  class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-sm flex items-center gap-1.5 transition"
+                >
+                  <i data-lucide="check-circle-2" class="w-4 h-4"></i> Kumpulkan
+                  Lembar Ujian
+                </button>
+
+                <button
+                  onclick="nextQuestion()"
+                  id="btn-next"
+                  class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold flex items-center gap-1 shadow-sm"
+                >
+                  Berikutnya <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Sidebar Kisi Soal (4 cols) -->
+            <div
+              class="lg:col-span-4 bg-white rounded-2xl border border-slate-200 shadow-sm p-6 flex flex-col"
+            >
+              <h3
+                class="font-bold text-sm text-slate-800 pb-3 border-b border-slate-100 mb-4"
+              >
+                Navigasi Kisi Soal
+              </h3>
+
+              <div id="grid-sheet" class="grid grid-cols-5 gap-2 mb-6">
+                <!-- Tombol Nomor 1-20 via JS -->
+              </div>
+
+              <div
+                class="mt-auto pt-4 border-t border-slate-100 text-xs space-y-2 text-slate-600"
+              >
+                <div class="flex items-center gap-2">
+                  <span class="w-3.5 h-3.5 rounded bg-emerald-600"></span>
+                  <span>Sudah Dijawab</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="w-3.5 h-3.5 rounded bg-amber-400"></span>
+                  <span>Ditandai Ragu-Ragu</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="w-3.5 h-3.5 rounded bg-slate-200"></span>
+                  <span>Belum Dijawab</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Area Hasil Ujian & Diagnostik -->
+        <div id="cbt-result" class="hidden max-w-4xl mx-auto space-y-6">
+          <!-- Kartu Medali -->
+          <div
+            class="bg-white rounded-2xl border border-slate-200 shadow-sm p-8 text-center space-y-4"
+          >
+            <div
+              id="medal-icon-box"
+              class="w-16 h-16 rounded-full mx-auto flex items-center justify-center text-3xl shadow-sm"
+            >
+              🏆
+            </div>
+            <div>
+              <span
+                class="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-1"
+                >Hasil Evaluasi Resmi</span
+              >
+              <h2
+                id="result-medal-title"
+                class="text-2xl font-black text-slate-900"
+              >
+                Peraih Medali Emas
+              </h2>
+              <p class="text-xs text-slate-500 mt-1 max-w-md mx-auto">
+                Perhitungan nilai disesuaikan dengan formula baku KSR/Olimpiade
+                Sains (Benar +4, Salah -1).
+              </p>
+            </div>
+
+            <div
+              class="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-2xl mx-auto pt-2"
+            >
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                <span class="text-[11px] text-slate-500 block">Total Poin</span>
+                <span id="stat-score" class="text-xl font-black text-indigo-700"
+                  >0 / 80</span
+                >
+              </div>
+              <div
+                class="p-3 bg-emerald-50 rounded-xl border border-emerald-200"
+              >
+                <span class="text-[11px] text-emerald-600 block"
+                  >Benar (+4)</span
+                >
+                <span
+                  id="stat-correct"
+                  class="text-xl font-black text-emerald-700"
+                  >0 Soal</span
+                >
+              </div>
+              <div class="p-3 bg-rose-50 rounded-xl border border-rose-200">
+                <span class="text-[11px] text-rose-600 block">Salah (-1)</span>
+                <span id="stat-wrong" class="text-xl font-black text-rose-700"
+                  >0 Soal</span
+                >
+              </div>
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                <span class="text-[11px] text-slate-500 block">Kosong (0)</span>
+                <span id="stat-empty" class="text-xl font-black text-slate-700"
+                  >0 Soal</span
+                >
+              </div>
+            </div>
+
+            <div class="flex items-center justify-center gap-3 pt-4">
+              <button
+                onclick="openReviewMode()"
+                class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs flex items-center gap-2 shadow-sm"
+              >
+                <i data-lucide="eye" class="w-4 h-4"></i> Buka Pembahasan
+                Mendalam
+              </button>
+              <button
+                onclick="startCbtExam()"
+                class="px-5 py-2.5 rounded-xl border border-slate-300 text-slate-700 font-bold text-xs hover:bg-slate-50 flex items-center gap-2"
+              >
+                <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Coba Ujian Lagi
+              </button>
+            </div>
+          </div>
+
+          <!-- Diagnostik Per Mapel -->
+          <div
+            class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-4"
+          >
+            <div
+              class="flex items-center gap-2 pb-3 border-b border-slate-100 font-extrabold text-sm text-slate-800"
+            >
+              <i data-lucide="bar-chart-2" class="w-4 h-4 text-indigo-600"></i>
+              <span>Analisis Performa Tiap Bidang Studi</span>
+            </div>
+
+            <div id="diagnostic-bars" class="space-y-4">
+              <!-- Disuntikkan JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Area Review Pembahasan -->
+        <div id="cbt-review" class="hidden max-w-3xl mx-auto space-y-4">
+          <div
+            class="flex items-center justify-between bg-white p-4 rounded-xl border border-slate-200 shadow-sm"
+          >
+            <div>
+              <h3 class="font-extrabold text-slate-900 text-sm">
+                Review & Pembahasan Ilmiah Soal
+              </h3>
+              <p class="text-xs text-slate-500">
+                Pelajari konsep di balik setiap kunci jawaban
+              </p>
+            </div>
+            <button
+              onclick="backToResult()"
+              class="text-xs font-bold px-3 py-1.5 bg-slate-100 hover:bg-slate-200 rounded-lg text-slate-700"
+            >
+              Kembali ke Skor
+            </button>
+          </div>
+
+          <div id="review-container" class="space-y-4">
+            <!-- Disuntikkan JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- TAB 3: TANYA GURU (AI TUTOR INTERAKTIF) -->
+      <!-- ========================================== -->
+      <div id="tab-tanya" class="hidden max-w-3xl mx-auto space-y-6">
+        <div
+          class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-4"
+        >
+          <div class="flex items-center gap-3 pb-3 border-b border-slate-100">
+            <div
+              class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center"
+            >
+              <i data-lucide="bot" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h2 class="font-extrabold text-slate-900 text-base">
+                Tanya Guru IPS Virtual
+              </h2>
+              <p class="text-xs text-slate-500">
+                Ajukan pertanyaan seputar materi KSR kapan saja untuk penjelasan
+                cepat
+              </p>
+            </div>
+          </div>
+
+          <!-- Chat Bubble Log -->
+          <div
+            id="chat-box"
+            class="h-80 overflow-y-auto custom-scroll space-y-3 p-3 bg-slate-50 rounded-xl border border-slate-100 text-xs"
+          >
+            <div class="flex items-start gap-2.5">
+              <div
+                class="w-7 h-7 rounded-lg bg-indigo-600 text-white flex-shrink-0 flex items-center justify-center font-bold text-[10px]"
+              >
+                GURU
+              </div>
+              <div
+                class="bg-white p-3.5 rounded-2xl rounded-tl-none border border-slate-200 text-slate-700 leading-relaxed shadow-2xs max-w-md"
+              >
+                Halo! Ada topik IPS yang masih membingungkan di modul? Kamu bisa
+                tanyakan tentang
+                <em
+                  >inflasi, teori masuknya hindu-buddha, garis wallace, faktor
+                  interaksi antarruang,</em
+                >
+                atau topik lainnya!
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Prompts Chips -->
+          <div class="space-y-1.5 pt-2">
+            <span class="text-[11px] font-semibold text-slate-400 block"
+              >Pertanyaan Populer:</span
+            >
+            <div class="flex flex-wrap gap-1.5">
+              <button
+                onclick="
+                  askPreset('Apa beda inflasi demand-pull dan cost-push?')
+                "
+                class="text-[11px] font-medium px-2.5 py-1 bg-slate-100 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg text-slate-600 transition"
+              >
+                Inflasi Demand vs Cost-push
+              </button>
+              <button
+                onclick="
+                  askPreset('Jelaskan teori masuknya Hindu Buddha ke Indonesia')
+                "
+                class="text-[11px] font-medium px-2.5 py-1 bg-slate-100 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg text-slate-600 transition"
+              >
+                Teori Masuknya Hindu-Buddha
+              </button>
+              <button
+                onclick="askPreset('Apa fungsi garis Wallace dan Weber?')"
+                class="text-[11px] font-medium px-2.5 py-1 bg-slate-100 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg text-slate-600 transition"
+              >
+                Garis Wallace & Weber
+              </button>
+              <button
+                onclick="askPreset('Apa itu mobilitas sosial antargenerasi?')"
+                class="text-[11px] font-medium px-2.5 py-1 bg-slate-100 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg text-slate-600 transition"
+              >
+                Mobilitas Antargenerasi
+              </button>
+            </div>
+          </div>
+
+          <!-- Input Bar -->
+          <form onsubmit="handleChatSubmit(event)" class="flex gap-2 pt-2">
+            <input
+              type="text"
+              id="chat-input"
+              placeholder="Ketik pertanyaanmu di sini..."
+              class="flex-1 px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition"
+            />
+            <button
+              type="submit"
+              class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-bold text-xs flex items-center gap-1.5 shadow-sm transition"
+            >
+              <span>Kirim</span>
+              <i data-lucide="send" class="w-3.5 h-3.5"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <!-- MODAL KONFIRMASI KUMPULKAN UJIAN -->
+    <div
+      id="submit-modal"
+      class="fixed inset-0 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-4 z-50 hidden"
+    >
+      <div
+        class="bg-white rounded-2xl max-w-sm w-full p-6 text-center space-y-4 shadow-xl border border-slate-100"
+      >
+        <div
+          class="w-12 h-12 bg-amber-50 text-amber-600 rounded-xl mx-auto flex items-center justify-center"
+        >
+          <i data-lucide="help-circle" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <h3 class="font-extrabold text-base text-slate-900">
+            Kumpulkan Ujian Sekarang?
+          </h3>
+          <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+            Pastikan semua soal yang kamu rasa mampu telah terjawab. Soal salah
+            akan terkena penalti poin (-1).
+          </p>
+        </div>
+        <div class="flex gap-2 pt-2">
+          <button
+            onclick="closeSubmitModal()"
+            class="flex-1 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-50"
+          >
+            Periksa Lagi
+          </button>
+          <button
+            onclick="confirmSubmitExam()"
+            class="flex-1 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow-sm"
+          >
+            Ya, Selesai
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCRIPT LOGIKA APLIKASI -->
+    <script>
+      // --- 1. BANK SOAL STANDAR KOMPETISI KSR (20 SOAL HOTS) ---
+      const QUESTION_BANK = [
         // EKONOMI (5 Soal)
         {
           id: 1,
           subject: "Ekonomi",
-          q: "Masalah mendasar dalam ilmu ekonomi yang terjadi karena kebutuhan manusia bersifat tidak terbatas sementara alat pemuas kebutuhan sangat terbatas disebut...",
+          question:
+            "Pak Ahmad menyewakan sebidang tanah miliknya kepada perusahaan tekstil untuk didirikan gudang distribusi. Atas penyediaan faktor produksi alam tersebut, imbalan yang diterima Pak Ahmad dalam arus lingkar ekonomi adalah...",
           options: [
-            "Inflasi Moneter",
-            "Kelangkaan (Scarcity)",
-            "Ketimpangan Sosial",
-            "Depresiasi Modal",
+            "Upah (Wage)",
+            "Sewa (Rent)",
+            "Bunga (Interest)",
+            "Laba Usaha (Profit)",
           ],
-          answer: 1,
+          correct: 1,
           explanation:
-            "Kelangkaan (Scarcity) adalah persoalan sentral ilmu ekonomi, di mana sumber daya yang tersedia tidak mencukupi untuk memenuhi seluruh ragam kebutuhan manusia yang beraneka ragam dan terus berkembang.",
+            "Dalam circular flow diagram, Rumah Tangga Konsumen (RTK) yang menyediakan tanah/lahan berhak menerima balas jasa berupa sewa (rent). Upah adalah untuk tenaga kerja, bunga untuk modal, dan laba untuk wirausaha.",
         },
         {
           id: 2,
           subject: "Ekonomi",
-          q: "Pak Bambang menyewakan ruko miliknya kepada pedagang retail. Dalam bagan interaksi antarpelaku ekonomi (circular flow), peran Pak Bambang dan jenis balas jasa yang diterimanya adalah...",
+          question:
+            "Kenaikan harga minyak mentah internasional memicu naiknya biaya produksi serta ongkos logistik pabrik di dalam negeri. Hal ini mengakibatkan harga barang konsumsi melonjak secara meluas. Fenomena ini disebut...",
           options: [
-            "RTP menerima Upah",
-            "RTK menerima Sewa (Rent)",
-            "RTG menerima Pajak",
-            "Masyarakat Luar Negeri menerima Laba",
+            "Demand-Pull Inflation",
+            "Cost-Push Inflation",
+            "Hyperinflation",
+            "Deflasi Struktural",
           ],
-          answer: 1,
+          correct: 1,
           explanation:
-            "Rumah Tangga Konsumen (RTK) yang bertindak sebagai pemilik faktor produksi tanah/bangunan berhak mendapatkan balas jasa berupa sewa (rent) dari pihak pengguna (RTP).",
+            "Cost-Push Inflation terjadi ketika kenaikan biaya input/faktor produksi (seperti BBM atau bahan baku impor) mendorong produsen menaikkan harga jual produk secara umum.",
         },
         {
           id: 3,
           subject: "Ekonomi",
-          q: "Apabila harga kebutuhan pokok di suatu negara melonjak drastis secara terus-menerus dan menurunkan daya beli uang masyarakat secara luas, kondisi makroekonomi ini disebut...",
-          options: ["Deflasi", "Devaluasi", "Inflasi", "Resesi"],
-          answer: 2,
+          question:
+            "Bank Indonesia memutuskan untuk menaikkan Giro Wajib Minimum (GWM) perbankan dan menaikkan suku bunga acuan (BI Rate). Kebijakan moneter kontraktif ini bertujuan utama untuk...",
+          options: [
+            "Meningkatkan jumlah peredaran uang",
+            "Meredam laju inflasi yang berlebihan",
+            "Mendorong konsumsi rumah tangga",
+            "Menurunkan nilai tukar Rupiah",
+          ],
+          correct: 1,
           explanation:
-            "Inflasi merupakan kecenderungan naiknya harga barang dan jasa secara umum serta terus-menerus dalam periode waktu tertentu yang mengikis nilai riil mata uang.",
+            "Menaikkan GWM dan BI Rate menyerap likuiditas dari pasar, mengurangi kapasitas pinjaman perbankan sehingga konsumsi melambat dan laju inflasi dapat ditekan.",
         },
         {
           id: 4,
           subject: "Ekonomi",
-          q: "Pernyataan berikut ini yang paling tepat menggambarkan perbedaan pokok antara 'Pertumbuhan Ekonomi' dan 'Pembangunan Ekonomi' adalah...",
+          question:
+            "Andi memiliki uang Rp50.000.000. Ia dihadapkan pada pilihan: membuka usaha kedai kopi dengan potensi laba Rp6.000.000/bulan, atau menyewakan mobil dengan penghasilan pasti Rp4.500.000/bulan. Jika Andi memilih membuka kedai kopi, maka biaya peluangnya adalah...",
           options: [
-            "Pertumbuhan ekonomi hanya memperhatikan kenaikan PDB/angka produksi, sedangkan pembangunan ekonomi memperhatikan pemerataan dan kesejahteraan sosial",
-            "Pembangunan ekonomi tidak memerlukan pertumbuhan ekonomi sama sekali",
-            "Pertumbuhan ekonomi selalu ditandai dengan penurunan angka kemiskinan secara otomatis",
-            "Pembangunan ekonomi hanya diukur dari pembangunan infrastruktur jalan tol semata",
+            "Rp6.000.000 / bulan",
+            "Rp4.500.000 / bulan",
+            "Rp1.500.000 / bulan",
+            "Rp50.000.000",
           ],
-          answer: 0,
+          correct: 1,
           explanation:
-            "Pertumbuhan ekonomi berfokus kuantitatif pada angka kenaikan output/PDB, sedangkan pembangunan ekonomi berorientasi kualitatif pada pemerataan distribusi pendapatan, pengentasan kemiskinan, dan peningkatan mutu IPM.",
+            "Biaya peluang (opportunity cost) adalah nilai dari alternatif terbaik yang dikorbankan. Karena memilih kedai kopi, Andi mengorbankan kesempatan menyewakan mobil sebesar Rp4.500.000/bulan.",
         },
         {
           id: 5,
           subject: "Ekonomi",
-          q: "Seorang siswa membeli buku tulis untuk persiapan ujian minggu depan. Berdasarkan waktu pemenuhannya, buku tulis bagi siswa tersebut digolongkan sebagai kebutuhan...",
-          options: ["Primer", "Sekarang", "Jasmani", "Masa Depan"],
-          answer: 1,
+          question:
+            "Perbedaan mendasar antara pertumbuhan ekonomi dan pembangunan ekonomi terletak pada indikatornya, yaitu...",
+          options: [
+            "Pertumbuhan menitikberatkan pada keadilan sosial, pembangunan pada kuantitas output",
+            "Pertumbuhan hanya menghitung kenaikan PDB riil, pembangunan mencakup pemerataan dan kesejahteraan masyarakat",
+            "Pertumbuhan selalu diiringi penurunan angka pengangguran, pembangunan tidak",
+            "Pembangunan hanya terjadi di negara maju, pertumbuhan di negara berkembang",
+          ],
+          correct: 1,
           explanation:
-            "Kebutuhan sekarang adalah kebutuhan yang pemenuhannya tidak dapat ditunda dan mendesak saat itu juga untuk menunjang aktivitas yang sedang dihadapi.",
+            "Pertumbuhan ekonomi berfokus pada kenaikan kuantitatif output fisik/PDB, sedangkan pembangunan ekonomi meninjau kualitas hidup, perbaikan struktur sosial, dan pemerataan distribusi pendapatan.",
         },
 
         // SOSIOLOGI (5 Soal)
         {
           id: 6,
           subject: "Sosiologi",
-          q: "Institusi sosial yang memiliki fungsi utama sebagai wahana sosialisasi primer dan menanamkan nilai dasar kasih sayang (afeksi) kepada generasi muda adalah...",
-          options: [
-            "Lembaga Pendidikan",
-            "Lembaga Agama",
-            "Lembaga Keluarga",
-            "Lembaga Hukum",
-          ],
-          answer: 2,
+          question:
+            "Seorang siswa selalu meniru gaya rambut, busana, hingga tutur kata seorang musisi idolanya sedemikian rupa hingga merasa dirinya adalah kembaran musisi tersebut. Faktor psikososial pendorong interaksi ini adalah...",
+          options: ["Imitasi", "Sugesti", "Identifikasi", "Simpati"],
+          correct: 2,
           explanation:
-            "Keluarga merupakan unit sosial terkecil yang menjadi lingkungan sosialisasi pertama (primer) bagi anak sekaligus tempat pemenuhan kebutuhan psikologis dan afeksi (kasih sayang).",
+            "Identifikasi adalah kecenderungan atau keinginan dalam diri seseorang untuk menjadi sama persis (identik) dengan figur yang diidealkannya, lebih mendalam dibanding imitasi biasa.",
         },
         {
           id: 7,
           subject: "Sosiologi",
-          q: "Seorang perwira militer yang melanggar kode etik berat diturunkan pangkatnya menjadi prajurit biasa. Peristiwa ini mencerminkan fenomena mobilitas sosial...",
+          question:
+            "Seorang kakek berprofesi sebagai buruh tani dengan pendidikan rendah. Namun, cucunya berhasil menamatkan kuliah kedokteran dan kini menjadi dokter spesialis bedah. Peristiwa ini merupakan bentuk...",
           options: [
-            "Vertikal Naik (Social Climbing)",
-            "Vertikal Turun (Social Sinking)",
-            "Horizontal Antargenerasi",
-            "Struktural Geografis",
+            "Mobilitas vertikal naik intragenerasi",
+            "Mobilitas vertikal naik antargenerasi",
+            "Mobilitas horizontal struktural",
+            "Mobilitas lateral geografis",
           ],
-          answer: 1,
+          correct: 1,
           explanation:
-            "Mobilitas vertikal turun (social sinking) adalah pergeseran kedudukan seseorang dari lapisan sosial yang lebih tinggi ke lapisan yang lebih rendah derajatnya.",
+            "Perubahan status sosial ini terjadi melintasi generasi yang berbeda (kakek vs cucu) dengan kenaikan kelas sosial, sehingga tergolong mobilitas vertikal naik antargenerasi.",
         },
         {
           id: 8,
           subject: "Sosiologi",
-          q: "Dua kubu masyarakat yang bersengketa mengenai batas tanah ulayat sepakat mengundang tokoh adat netral yang bertindak sebagai penengah pemberi nasihat damai. Bentuk akomodasi konflik ini disebut...",
-          options: ["Ajudikasi", "Mediasi", "Koersi", "Arbitrase"],
-          answer: 1,
+          question:
+            "Tingkatan norma sosial yang memiliki daya ikat paling kuat dan apabila dilanggar akan mendapatkan sanksi berat berupa pengucilan atau hukuman adat adalah...",
+          options: [
+            "Usage (Cara)",
+            "Folkways (Kebiasaan)",
+            "Mores (Tata Kelakuan)",
+            "Customs (Adat Istiadat)",
+          ],
+          correct: 3,
           explanation:
-            "Mediasi adalah penyelesaian konflik melalui perantara pihak ketiga yang netral, di mana keputusan akhir tetap disepakati bersama oleh kedua belah pihak yang bersengketa (tanpa paksaan).",
+            "Urutan kekuatan sanksi norma: Usage < Folkways < Mores < Customs. Customs (Adat Istiadat) memiliki sanksi sosial dan moral paling tegas di tengah komunitas tradisional.",
         },
         {
           id: 9,
           subject: "Sosiologi",
-          q: "Pembangunan kawasan industri baru di pedesaan sering memicu perubahan interaksi sosial warga sekitar. Dampak sosial yang sering muncul akibat fenomena tersebut adalah...",
+          question:
+            "Dua kubu warga desa berselisih perihal batas tanah ulayat. Keduanya sepakat membawa sengketa tersebut ke pengadilan negeri dan bersedia mematuhi keputusan mutlak hakim. Bentuk akomodasi ini disebut...",
           options: [
-            "Sistem kekerabatan gotong royong semakin menguat di semua lini",
-            "Peralihan dari pola hubungan paguyuban (komunal) menjadi patembayan (individualistis/profesional)",
-            "Lenyapnya seluruh lembaga pendidikan formal",
-            "Hilangnya kebutuhan masyarakat akan uang tunai",
+            "Kompromi",
+            "Mediasi",
+            "Arbitrase / Ajudikasi",
+            "Konsiliasi",
           ],
-          answer: 1,
+          correct: 2,
           explanation:
-            "Modernisasi dan industrialisasi mengubah pola hubungan sosial masyarakat agraris (gemeinschaft/paguyuban) menjadi lebih rasional, berorientasi materi, dan kontraktual (gesellschaft/patembayan).",
+            "Penyelesaian sengketa melalui jalur meja hijau/pengadilan secara resmi dinamakan ajudikasi (atau arbitrase jika menggunakan pihak ketiga yang berkewenangan memutus keputusan yang mengikat).",
         },
         {
           id: 10,
           subject: "Sosiologi",
-          q: "Proses peleburan unsur-unsur kebudayaan yang berbeda dalam masyarakat majemuk hingga terwujud keserasian fungsi dan rasa kebersamaan nasional disebut...",
+          question:
+            "Salah satu fungsi laten (tersembunyi/tidak disadari langsung) dari lembaga pendidikan formal di sekolah adalah...",
           options: [
-            "Konflik Terbuka",
-            "Integrasi Sosial",
-            "Segregasi Wilayah",
-            "Etnosentrisme",
+            "Mengajarkan keterampilan literasi dan numerasi",
+            "Memperpanjang masa ketergantungan remaja dan menunda usia pernikahan dini",
+            "Memberikan ijazah resmi kelulusan",
+            "Mempersiapkan tenaga kerja terampil industri",
           ],
-          answer: 1,
+          correct: 1,
           explanation:
-            "Integrasi sosial merupakan proses penyatuan berbagai kelompok masyarakat yang berbeda secara latar belakang budaya atau suku menjadi satu kesatuan hidup yang harmonis.",
+            "Fungsi manifes sekolah adalah transfer ilmu dan ijazah. Fungsi latennya mencakup penundaan usia pernikahan dini, pemupukan ikatan pertemanan antarbudaya, dan pemeliharaan integrasi.",
         },
 
         // GEOGRAFI (5 Soal)
         {
           id: 11,
           subject: "Geografi",
-          q: "Indonesia berada di antara 6°LU - 11°LS dan 95°BT - 141°BT. Salah satu konsekuensi langsung letak astronomis tersebut terhadap bentang alam dan iklim Indonesia adalah...",
+          question:
+            "Indonesia terletak di zona pertemuan tiga lempeng tektonik aktif dunia. Tiga lempeng besar pembentuk busur vulkanik (*Ring of Fire*) di kepulauan Indonesia adalah...",
           options: [
-            "Beriklim tropis dengan curah hujan tinggi serta paparan sinar matahari sepanjang tahun",
-            "Memiliki empat musim perubahan cuaca ekstrim",
-            "Sering terjadi gempa bumi karena tumbukan lempeng samudera",
-            "Terhindar dari seluruh jenis angin siklon tropis dan monsun",
+            "Lempeng Eurasia, Pasifik, dan Indo-Australia",
+            "Lempeng Afrika, Pasifik, dan Antarktika",
+            "Lempeng Nazca, Eurasia, dan Filipina",
+            "Lempeng Karibia, Indo-Australia, dan Amerika",
           ],
-          answer: 0,
+          correct: 0,
           explanation:
-            "Wilayah yang berada di lintang rendah dekat ekuator (antara 23,5°LU - 23,5°LS) beriklim tropis dengan temperatur hangat dan penyinaran matahari stabil sepanjang tahun.",
+            "Kepulauan Indonesia terbentuk dari zona penunjaman tiga lempeng litosfer utama: Lempeng Eurasia di utara, Indo-Australia di selatan/barat daya, dan Lempeng Samudra Pasifik di timur.",
         },
         {
           id: 12,
           subject: "Geografi",
-          q: "Warga lereng Gunung Slamet penghasil kubis menjual sayurnya ke Kota Semarang karena terbukanya jalan tol baru yang memangkas waktu tempuh dan biaya angkut. Hal ini mencerminkan syarat interaksi keruangan...",
+          question:
+            "Kawasan Danau Toba di Sumatera Utara diklasifikasikan sebagai danau vulkano-tektonik karena terbentuk dari proses...",
           options: [
-            "Intervening Opportunity",
-            "Kemudahan Pemindahan (Transferability)",
-            "Perbedaan Stratifikasi",
-            "Dinamika Litosfer",
+            "Pelarutan batuan kapur oleh air hujan",
+            "Letusan dahsyat gunung api purba yang disertai runtuhnya struktur dapur magma",
+            "Pencairan es gletser zaman glasial",
+            "Bendungan aliran sungai akibat longsoran gempa",
           ],
-          answer: 1,
+          correct: 1,
           explanation:
-            "Kemudahan pemindahan (Transferability) bergantung pada ketersediaan infrastruktur dan biaya transportasi. Jalan yang baik mempermudah arus perpindahan barang antarwilayah.",
+            "Danau Toba merupakan kaldera raksasa (supervolcano) yang terbentuk dari letusan dahsyat sekitar 74.000 tahun lalu disertai keruntuhan tektonik pada batuan penyangga kerak bumi.",
         },
         {
           id: 13,
           subject: "Geografi",
-          q: "Posisi geologis Indonesia yang menjadi titik pertemuan Lempeng Eurasia, Lempeng Indo-Australia, dan Lempeng Pasifik mengakibatkan Indonesia...",
+          question:
+            "Garis maya yang ditarik untuk memisahkan persebaran fauna Asiatis (seperti Harimau dan Badak) dengan fauna tipe Peralihan (seperti Komodo dan Anoa) adalah...",
           options: [
-            "Bebas dari jalur cincin api pasifik (Ring of Fire)",
-            "Memiliki banyak gunung berapi aktif, tanah vulkanik subur, namun rawan bencana gempa bumi",
-            "Hanya memiliki satu jenis lapisan batuan sedimen tua",
-            "Memiliki cadangan es abadi terluas di Asia Tenggara",
+            "Garis Weber",
+            "Garis Wallace",
+            "Garis Khatulistiwa",
+            "Garis Lydekker",
           ],
-          answer: 1,
+          correct: 1,
           explanation:
-            "Subduksi lempeng tektonik memicu aktivitas vulkanisme intensif yang menghasilkan material abu vulkanik penyubur tanah, sekaligus memicu patahan sumber gempa.",
+            "Garis Wallace membatasi wilayah Asiatis dengan Peralihan (Wallace). Sedangkan Garis Weber membatasi wilayah Peralihan dengan Australis.",
         },
         {
           id: 14,
           subject: "Geografi",
-          q: "Benua di dunia yang memiliki karakteristik memiliki kawasan gurun terluas di dunia (Gurun Sahara) serta dikenal dengan julukan Benua Hitam adalah...",
+          question:
+            "Warga dataran tinggi Dieng menghasilkan surplus kentang tetapi membutuhkan pasokan garam dari pesisir Demak. Terjadinya pertukaran barang antarwilayah ini memenuhi prinsip interaksi keruangan yaitu...",
           options: [
-            "Benua Asia",
-            "Benua Amerika",
-            "Benua Afrika",
-            "Benua Australia",
+            "Regional Complementarity (Saling Melengkapi)",
+            "Intervening Opportunity (Kesempatan Antara)",
+            "Spatial Transferability (Kemudahan Transfer)",
+            "Agglomeration Effect",
           ],
-          answer: 2,
+          correct: 0,
           explanation:
-            "Benua Afrika dijuluki Benua Hitam karena mayoritas penduduk aslinya ras Negroid berkulit gelap, serta memiliki Gurun Sahara sebagai gurun panas terluas di bumi.",
+            "Regional Complementarity terjadi manakala wilayah-wilayah memiliki keanekaragaman surplus sumber daya yang berlainan sehingga timbul simbiosis saling melengkapi.",
         },
         {
           id: 15,
           subject: "Geografi",
-          q: "Merek fesyen global dan tren musik pop dari Asia Timur (seperti Hallyu/K-Pop) yang digemari remaja Indonesia merupakan bukti nyata interaksi antarruang dunia pada bidang...",
+          question:
+            "Fenomena perubahan iklim global menyebabkan kenaikan muka air laut dunia. Dampak paling rentan yang dihadapi oleh negara kepulauan seperti Indonesia adalah...",
           options: [
-            "Pertahanan Militer",
-            "Sosial Budaya",
-            "Topografi Keruangan",
-            "Geopolitik Agraria",
+            "Tenggelamnya pulau-pulau kecil terluar dan abrasi pesisir mangrove",
+            "Peningkatan aktivitas vulkanisme gunung berapi",
+            "Pergeseran garis khatulistiwa ke arah kutub",
+            "Berhentinya pergerakan lempeng samudra",
           ],
-          answer: 1,
+          correct: 0,
           explanation:
-            "Difusi gaya busana, musik, dan bahasa merupakan perwujudan interaksi keruangan dalam dimensi sosial dan kebudayaan yang didukung teknologi informasi modern.",
+            "Kenaikan permukaan laut langsung mengancam topografi pesisir rendah, memicu abrasi pantai, intrusi air asin ke air tanah, serta hilangnya pulau-pulau karang terluar.",
         },
 
         // SEJARAH (5 Soal)
         {
           id: 16,
           subject: "Sejarah",
-          q: "Kepercayaan masyarakat praaksara Nusantara yang meyakini bahwa setiap benda mati tertentu seperti batu besar atau senjata pusaka memiliki kekuatan gaib disebut...",
-          options: ["Animisme", "Dinamisme", "Monoteisme", "Totemisme"],
-          answer: 1,
+          question:
+            "Peninggalan zaman Megalitikum berwujud meja batu datar yang ditopang batu berkaki, digunakan sebagai tempat meletakkan sesaji persembahan bagi arwah nenek moyang disebut...",
+          options: ["Menhir", "Dolmen", "Sarkofagus", "Waruga"],
+          correct: 1,
           explanation:
-            "Dinamisme mempercayai adanya kekuatan gaib/magis yang bersemayam dalam benda tertentu, sedangkan Animisme meyakini roh halus leluhur yang mendiami alam sekitar.",
+            "Dolmen berfungsi sebagai meja sesaji. Menhir adalah tiang batu pemujaan, sedangkan Sarkofagus dan Waruga berfungsi sebagai peti kubur batu.",
         },
         {
           id: 17,
           subject: "Sejarah",
-          q: "Sistem Tanam Paksa (Cultuurstelsel) yang dicetuskan oleh Gubernur Jenderal Van den Bosch pada tahun 1830 di Hindia Belanda menimbulkan penderitaan luar biasa, namun dampak positif tidak langsung bagi rakyat adalah...",
+          question:
+            "Prasasti Yupa bertarikh abad ke-5 Masehi yang ditulis dengan huruf Pallawa dan bahasa Sanskerta di Muara Kaman membuktikan berdirinya kerajaan Hindu tertua di Nusantara yaitu...",
           options: [
-            "Rakyat pribumi otomatis diangkat menjadi pejabat tinggi kolonial",
-            "Rakyat mengenal berbagai komoditas tanaman ekspor baru serta mekanisme peredaran uang (upah)",
-            "Pajak tanah dihapuskan seumur hidup untuk seluruh penduduk",
-            "Pemerintah kolonial membebaskan wilayah pedalaman dari kerja paksa",
+            "Tarumanegara",
+            "Kutai Martapura",
+            "Mataram Kuno",
+            "Sriwijaya",
           ],
-          answer: 1,
+          correct: 1,
           explanation:
-            "Walaupun memeras tenaga rakyat, kebijakan Cultuurstelsel memperkenalkan teknik agrikultur tanaman baru seperti kopi, tebu, dan teh, serta mengenalkan sistem upah tunai.",
+            "Prasasti Yupa dibuat pada era Raja Mulawarman dari Kerajaan Kutai Martapura di Kalimantan Timur, menandai dimulainya era aksara (sejarah tertulis) di Nusantara.",
         },
         {
           id: 18,
           subject: "Sejarah",
-          q: "Penerapan Politik Etis (Trilogi Van Deventer) oleh Belanda yang menjadi titik balik lahirnya kaum cendekiawan dan memicu pergerakan nasional Indonesia berada pada program...",
+          question:
+            "Kebijakan Politik Etis (Trilogi Van Deventer) yang diberlakukan kolonial Belanda pada awal abad ke-20 meliputi tiga program utama, yaitu...",
           options: [
-            "Irigasi Pertanian",
-            "Emigrasi Tenaga Kerja",
-            "Edukasi (Pengajaran)",
-            "Desentralisasi Anggaran",
+            "Irigasi, Emigrasi, dan Edukasi",
+            "Monopoli, Verplichte Leverantie, dan Hongitochten",
+            "Devide et Impera, Agrarische Wet, dan Poenale Sanctie",
+            "Liberalisasi, Industrialisasi, dan Kolonisasi",
           ],
-          answer: 2,
+          correct: 0,
           explanation:
-            "Program edukasi melahirkan golongan priyayi terpelajar (seperti lulusan STOVIA) yang kemudian mendirikan organisasi modern Budi Utomo dan memimpin perjuangan persatuan nasional.",
+            "Trilogi Van Deventer terdiri dari Irigasi (pengairan sawah), Emigrasi (transmigrasi tenaga kerja), dan Edukasi (pendidikan). Program edukasi inilah yang melahirkan kaum terpelajar pelopor kemerdekaan.",
         },
         {
           id: 19,
           subject: "Sejarah",
-          q: "Fase pemerintahan di Indonesia yang menitikberatkan programnya pada Stabilitas Politik Nasional dan Pembangunan Ekonomi Lima Tahun (Pelita) adalah masa...",
+          question:
+            "Peristiwa Rengasdengklok pada 16 Agustus 1945 dipelopori oleh para pemuda pejuang dengan tujuan pokok...",
           options: [
-            "Demokrasi Liberal",
-            "Orde Lama",
-            "Orde Baru",
-            "Awal Reformasi",
+            "Menyusun teks naskah proklamasi bersama tentara Sekutu",
+            "Menjauhkan Sukarno-Hatta dari pengaruh militer Jepang agar segera memproklamasikan kemerdekaan",
+            "Mencegah kedatangan armada NICA Belanda di pelabuhan Tanjung Priok",
+            "Membentuk struktur kabinet presidensial pertama",
           ],
-          answer: 2,
+          correct: 1,
           explanation:
-            "Pemerintahan Orde Baru (Presiden Soeharto) menempatkan stabilitas politik keamanan dan pertumbuhan ekonomi berbasis Repelita sebagai fokus utama pembangunannya.",
+            "Golongan pemuda mengamankan Sukarno-Hatta ke Rengasdengklok agar tidak terpengaruh janji kemerdekaan dari Marsekal Terauchi (Jepang), sehingga proklamasi murni atas perjuangan bangsa sendiri.",
         },
         {
           id: 20,
           subject: "Sejarah",
-          q: "Peristiwa diplomasi yang menjadi pengakuan kedaulatan Republik Indonesia Serikat oleh pihak Belanda pada akhir tahun 1949 setelah melewati rangkaian agresi militer adalah...",
+          question:
+            "Tonggak berakhirnya masa pemerintahan Orde Baru dan dimulainya Era Reformasi di Indonesia ditandai secara resmi oleh...",
           options: [
-            "Perundingan Linggajati",
-            "Perundingan Renville",
-            "Perjanjian Roem-Royen",
-            "Konferensi Meja Bundar (KMB)",
+            "Pelaksanaan Sidang Umum MPR 1999",
+            "Pidato pernyataan pengunduran diri Presiden Soeharto pada 21 Mei 1998",
+            "Pencabutan aturan Dwifungsi ABRI pada tahun 2004",
+            "Penandatanganan Dekrit Presiden 5 Juli 1959",
           ],
-          answer: 3,
+          correct: 1,
           explanation:
-            "Konferensi Meja Bundar (KMB) di Den Haag menghasilkan kesepakatan penyerahan dan pengakuan kedaulatan dari Belanda kepada Republik Indonesia Serikat pada 27 Desember 1949.",
+            "Pada tanggal 21 Mei 1998, Presiden Soeharto mengumumkan pengunduran dirinya di Istana Merdeka menyusul krisis moneter dan gelombang demonstrasi mahasiswa reformasi.",
         },
       ];
 
-      const chatbotKnowledge = [
-        {
-          keywords: ["kelangkaan", "scarcity", "masalah ekonomi"],
-          answer:
-            "Kelangkaan (Scarcity) adalah kondisi pokok ekonomi di mana alat pemuas kebutuhan manusia bersifat terbatas, sedangkan kebutuhan manusia tidak terbatas. Solusinya adalah membuat skala prioritas kebutuhan.",
-        },
-        {
-          keywords: ["rtk", "rtp", "konsumen", "produsen"],
-          answer:
-            "RTK (Rumah Tangga Konsumen) adalah pengguna barang/jasa dan penyedia faktor produksi (tanah, tenaga kerja, modal). RTP (Produsen) adalah penghasil output dan pembayar balas jasa berupa sewa, upah, bunga, dan laba.",
-        },
-        {
-          keywords: ["inflasi"],
-          answer:
-            "Inflasi adalah kenaikan harga-harga barang secara umum dan terjadi terus-menerus, yang berakibat pada merosotnya daya beli riil masyarakat terhadap barang dan jasa.",
-        },
-        {
-          keywords: ["pertumbuhan", "pembangunan"],
-          answer:
-            "Pertumbuhan ekonomi hanya mengukur kenaikan angka volume produksi (PDB). Sedangkan pembangunan ekonomi mengukur peningkatan mutu hidup rakyat: penurunan kemiskinan, fasilitas pendidikan yang merata, dan kenaikan IPM.",
-        },
-        {
-          keywords: ["institusi", "keluarga", "lembaga"],
-          answer:
-            "Institusi sosial adalah sistem norma dan aturan untuk menjaga keteraturan masyarakat. Keluarga berperan sebagai agen sosialisasi primer penanam nilai afeksi dan moral pertama bagi anak.",
-        },
-        {
-          keywords: ["mobilitas"],
-          answer:
-            "Mobilitas sosial adalah perpindahan status seseorang. Ada vertikal naik (promosi jabatan), vertikal turun (bangkrut), serta horizontal (pindah instansi kerja dengan pangkat setara).",
-        },
-        {
-          keywords: ["konflik", "integrasi", "mediasi"],
-          answer:
-            "Konflik adalah pertentangan antarpribadi/kelompok. Akomodasi konflik dapat ditempuh lewat mediasi (pihak ketiga netral penengah) demi memulihkan integrasi sosial (kesatuan).",
-        },
-        {
-          keywords: ["letak", "astronomis", "geografis", "geologis"],
-          answer:
-            "Letak Astronomis (6°LU-11°LS) membuat Indonesia tropis & punya 3 zona waktu. Letak Geografis (2 benua, 2 samudra) menjadikannya persilangan jalur niaga. Letak Geologis (3 lempeng aktif) memunculkan banyak gunung api subur namun rawan gempa.",
-        },
-        {
-          keywords: ["interaksi ruang", "transferability", "komplementer"],
-          answer:
-            "Interaksi antarruang dipicu oleh 3 kondisi: Saling Melengkapi (surplus komoditas berbeda), Kesempatan Antara (adanya alternatif lokasi yang lebih dekat), dan Kemudahan Transfer (sarana jalan & ongkos angkut).",
-        },
-        {
-          keywords: ["praaksara", "animisme", "dinamisme"],
-          answer:
-            "Masa praaksara adalah kurun sebelum manusia mengenal tulisan. Animisme memuja roh nenek moyang, sedangkan Dinamisme percaya bahwa benda-benda tertentu menyimpan daya magis/kekuatan gaib.",
-        },
-        {
-          keywords: ["tanam paksa", "cultuurstelsel"],
-          answer:
-            "Tanam Paksa (Van den Bosch 1830) mewajibkan petani menanam komoditas ekspor. Rakyat menderita akibat eksploitasi, namun dampak sekundernya rakyat mengenal tanaman komersial dan mekanisme upah uang.",
-        },
-        {
-          keywords: ["politik etis"],
-          answer:
-            "Politik Etis terdiri dari Edukasi, Irigasi, dan Emigrasi/Transmigrasi. Kebijakan edukasi melahirkan kaum intelektual pribumi yang mendirikan organisasi modern pemersatu bangsa.",
-        },
-        {
-          keywords: ["orde baru", "reformasi"],
-          answer:
-            "Orde Baru (Soeharto) berfokus pada stabilitas keamanan dan Repelita. Era Reformasi (1998-sekarang) lahir menuntut kebebasan berpendapat, pemilu demokratis, dan desentralisasi/otonomi daerah.",
-        },
-        {
-          keywords: ["ksr", "halo", "hai", "bantu"],
-          answer:
-            "Halo pejuang KSR! Saya Guru Virtual IPS SMP. Kamu bisa tanyakan konsep apa saja mengenai Ekonomi, Sosiologi, Geografi, atau Sejarah (misal: 'jelaskan inflasi', 'apa itu politik etis', atau 'syarat interaksi ruang').",
-        },
-      ];
+      // --- 2. STATE APLIKASI CBT ---
+      let examActive = false;
+      let currentQIdx = 0;
+      let userAnswers = {}; // { [id]: optionIndex }
+      let doubtfulAnswers = {}; // { [id]: boolean }
+      let examTime = 20 * 60; // 20 Menit
+      let examTimerInterval = null;
 
-      function getBotResponse(input) {
-        const lowerInput = input.toLowerCase();
-        for (let item of chatbotKnowledge) {
-          for (let keyword of item.keywords) {
-            if (lowerInput.includes(keyword)) {
-              return item.answer;
-            }
-          }
-        }
-        return "Guru belum menemukan kata kunci tersebut di modul dasar. Coba tanyakan konsep seperti: 'Kelangkaan', 'Inflasi', 'Mobilitas Sosial', 'Letak Astronomis', atau 'Politik Etis'.";
+      // --- TAB SWITCHER ---
+      function switchTab(tabId) {
+        ["modul", "cbt", "tanya"].forEach((id) => {
+          document.getElementById(`tab-${id}`).classList.add("hidden");
+          const navBtn = document.getElementById(`nav-${id}`);
+          navBtn.classList.remove(
+            "bg-indigo-50",
+            "text-indigo-600",
+            "border",
+            "border-indigo-200",
+          );
+          navBtn.classList.add("text-slate-600");
+        });
+
+        document.getElementById(`tab-${tabId}`).classList.remove("hidden");
+        const activeNav = document.getElementById(`nav-${tabId}`);
+        activeNav.classList.add(
+          "bg-indigo-50",
+          "text-indigo-600",
+          "border",
+          "border-indigo-200",
+        );
+        activeNav.classList.remove("text-slate-600");
+        lucide.createIcons();
       }
 
-      const Icons = {
-        Book: () => (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
-          </svg>
-        ),
-        Message: () => (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z" />
-          </svg>
-        ),
-        Trophy: () => (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
-            <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
-            <path d="M4 22h16" />
-            <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22" />
-            <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22" />
-            <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" />
-          </svg>
-        ),
-        Send: () => (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <line x1="22" x2="11" y1="2" y2="13" />
-            <polygon points="22 2 15 22 11 13 2 9 22 2" />
-          </svg>
-        ),
-        Home: () => (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-            <polyline points="9 22 9 12 15 12 15 22" />
-          </svg>
-        ),
-        Clock: () => (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <circle cx="12" cy="12" r="10" />
-            <polyline points="12 6 12 12 16 14" />
-          </svg>
-        ),
-        Alert: () => (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <circle cx="12" cy="12" r="10" />
-            <line x1="12" y1="8" x2="12" y2="12" />
-            <line x1="12" y1="16" x2="12.01" y2="16" />
-          </svg>
-        ),
-        Check: () => (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <polyline points="20 6 9 17 4 12" />
-          </svg>
-        ),
-        Rotate: () => (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.3" />
-          </svg>
-        ),
-        BarChart: () => (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <line x1="12" y1="20" x2="12" y2="10" />
-            <line x1="18" y1="20" x2="18" y2="4" />
-            <line x1="6" y1="20" x2="6" y2="16" />
-          </svg>
-        ),
-        Eye: () => (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-            <circle cx="12" cy="12" r="3" />
-          </svg>
-        ),
-        Help: () => (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <circle cx="12" cy="12" r="10" />
-            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
-            <line x1="12" y1="17" x2="12.01" y2="17" />
-          </svg>
-        ),
-      };
+      // --- FITUR MODUL: FILTER & SEARCH ---
+      function filterCategory(cat) {
+        document.querySelectorAll(".cat-btn").forEach((btn) => {
+          if (btn.dataset.cat === cat) {
+            btn.className =
+              "cat-btn px-3 py-1.5 rounded-lg bg-white text-indigo-600 shadow-xs";
+          } else {
+            btn.className =
+              "cat-btn px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900";
+          }
+        });
 
-      const HomeScreen = ({ navigateTo }) => (
-        <div className="p-4 md:p-8 animate-fade-in flex flex-col items-center justify-center min-h-[82vh] text-center">
-          <div className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-200 max-w-lg w-full">
-            <div className="inline-flex p-3 bg-blue-50 text-blue-600 rounded-2xl mb-4">
-              <Icons.Trophy />
-            </div>
-            <h1 className="text-2xl md:text-3xl font-extrabold text-slate-800 mb-2">
-              KSR IPS <span className="text-blue-600">Pro CBT</span>
-            </h1>
-            <p className="text-slate-500 text-sm mb-6 leading-relaxed">
-              Platform Latihan Terstandarisasi Kompetensi Sains Ruangguru (KSR)
-              Jenjang SMP dengan Sistem CBT, Diagnostik Analitik, dan Bimbingan
-              Virtual.
-            </p>
+        document.querySelectorAll(".module-card").forEach((card) => {
+          if (cat === "all" || card.dataset.category === cat) {
+            card.classList.remove("hidden");
+          } else {
+            card.classList.add("hidden");
+          }
+        });
+      }
 
-            <div className="grid gap-3">
-              <button
-                onClick={() => navigateTo("quiz")}
-                className="flex items-center justify-between p-4 rounded-xl bg-orange-500 text-white hover:bg-orange-600 transition shadow-sm font-semibold text-sm group"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-white/20 rounded-lg">
-                    <Icons.Trophy />
-                  </div>
-                  <div className="text-left">
-                    <div className="font-bold">Simulasi CBT KSR (Ujian)</div>
-                    <div className="text-xs text-orange-100 font-normal">
-                      20 Soal • Timer 20 Menit • Skoring +4 / -1
-                    </div>
-                  </div>
-                </div>
-                <span className="group-hover:translate-x-1 transition-transform">
-                  →
-                </span>
-              </button>
+      function filterModules() {
+        const q = document.getElementById("module-search").value.toLowerCase();
+        document.querySelectorAll(".module-card").forEach((card) => {
+          const text = card.innerText.toLowerCase();
+          if (text.includes(q)) {
+            card.classList.remove("hidden");
+          } else {
+            card.classList.add("hidden");
+          }
+        });
+      }
 
-              <button
-                onClick={() => navigateTo("modules")}
-                className="flex items-center justify-between p-4 rounded-xl bg-white text-slate-700 hover:bg-slate-50 transition border border-slate-200 text-sm font-semibold group"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-blue-50 text-blue-600 rounded-lg">
-                    <Icons.Book />
-                  </div>
-                  <div className="text-left">
-                    <div>Modul Kisi-Kisi Lengkap</div>
-                    <div className="text-xs text-slate-400 font-normal">
-                      Ekonomi, Sosiologi, Geografi, Sejarah
-                    </div>
-                  </div>
-                </div>
-                <span className="text-slate-400 group-hover:translate-x-1 transition-transform">
-                  →
-                </span>
-              </button>
+      function startSubjectPractice(subj) {
+        switchTab("cbt");
+        startCbtExam(subj);
+      }
 
-              <button
-                onClick={() => navigateTo("chat")}
-                className="flex items-center justify-between p-4 rounded-xl bg-white text-slate-700 hover:bg-slate-50 transition border border-slate-200 text-sm font-semibold group"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-purple-50 text-purple-600 rounded-lg">
-                    <Icons.Message />
-                  </div>
-                  <div className="text-left">
-                    <div>Tanya Guru Virtual IPS</div>
-                    <div className="text-xs text-slate-400 font-normal">
-                      Tanya konsep & klarifikasi materi 24/7
-                    </div>
-                  </div>
-                </div>
-                <span className="text-slate-400 group-hover:translate-x-1 transition-transform">
-                  →
-                </span>
-              </button>
-            </div>
+      // --- FITUR CBT: ENGINE & TIMER ---
+      let activeQuestions = QUESTION_BANK;
 
-            <div className="mt-6 pt-4 border-t border-slate-100 text-xs text-slate-400">
-              Disusun sesuai standar silabus & kisi-kisi KSR IPS SMP 2026
-            </div>
+      function startCbtExam(filterSubject = null) {
+        if (filterSubject) {
+          activeQuestions = QUESTION_BANK.filter(
+            (q) => q.subject === filterSubject,
+          );
+        } else {
+          activeQuestions = QUESTION_BANK;
+        }
+
+        userAnswers = {};
+        doubtfulAnswers = {};
+        currentQIdx = 0;
+        examTime = 20 * 60;
+
+        document.getElementById("cbt-intro").classList.add("hidden");
+        document.getElementById("cbt-result").classList.add("hidden");
+        document.getElementById("cbt-review").classList.add("hidden");
+        document.getElementById("cbt-running").classList.remove("hidden");
+
+        renderGridSheet();
+        loadQuestion(0);
+
+        clearInterval(examTimerInterval);
+        examTimerInterval = setInterval(() => {
+          examTime--;
+          const mins = Math.floor(examTime / 60);
+          const secs = examTime % 60;
+          const display = `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+          document.getElementById("timer-display").innerText = display;
+
+          if (examTime <= 180) {
+            document
+              .getElementById("cbt-timer")
+              .classList.add(
+                "text-rose-600",
+                "bg-rose-50",
+                "border-rose-300",
+                "animate-pulse",
+              );
+          }
+
+          if (examTime <= 0) {
+            clearInterval(examTimerInterval);
+            confirmSubmitExam();
+          }
+        }, 1000);
+        lucide.createIcons();
+      }
+
+      function renderGridSheet() {
+        const grid = document.getElementById("grid-sheet");
+        grid.innerHTML = "";
+        activeQuestions.forEach((q, idx) => {
+          const btn = document.createElement("button");
+          btn.id = `grid-btn-${idx}`;
+          btn.innerText = idx + 1;
+          btn.onclick = () => loadQuestion(idx);
+          btn.className =
+            "h-9 rounded-xl border text-xs font-bold transition flex items-center justify-center " +
+            getGridBtnClass(idx);
+          grid.appendChild(btn);
+        });
+      }
+
+      function getGridBtnClass(idx) {
+        const q = activeQuestions[idx];
+        const isAnswered = userAnswers[q.id] !== undefined;
+        const isDoubt = doubtfulAnswers[q.id];
+        const isCurrent = currentQIdx === idx;
+
+        let cls = "bg-slate-100 border-slate-200 text-slate-600 ";
+        if (isDoubt) cls = "bg-amber-400 border-amber-500 text-slate-900 ";
+        else if (isAnswered)
+          cls = "bg-emerald-600 border-emerald-700 text-white ";
+
+        if (isCurrent) cls += "ring-2 ring-indigo-600 ring-offset-2 ";
+        return cls;
+      }
+
+      function loadQuestion(idx) {
+        currentQIdx = idx;
+        const q = activeQuestions[idx];
+
+        document.getElementById("question-number-lbl").innerText =
+          `Soal No ${idx + 1} dari ${activeQuestions.length}`;
+        document.getElementById("cbt-badge-subject").innerText =
+          `Bidang: ${q.subject}`;
+        document.getElementById("question-text").innerText = q.question;
+
+        // Update doubtful button style
+        const doubtBtn = document.getElementById("doubtful-btn");
+        if (doubtfulAnswers[q.id]) {
+          doubtBtn.className =
+            "px-3 py-1.5 rounded-lg border border-amber-500 bg-amber-400 text-slate-900 text-xs font-bold flex items-center gap-1.5";
+        } else {
+          doubtBtn.className =
+            "px-3 py-1.5 rounded-lg border border-slate-300 text-slate-600 hover:bg-slate-50 text-xs font-semibold flex items-center gap-1.5";
+        }
+
+        // Render Options
+        const optContainer = document.getElementById("options-container");
+        optContainer.innerHTML = "";
+        const labels = ["A", "B", "C", "D"];
+
+        q.options.forEach((opt, oIdx) => {
+          const isSelected = userAnswers[q.id] === oIdx;
+          const btn = document.createElement("button");
+          btn.onclick = () => selectOption(q.id, oIdx);
+          btn.className = `w-full text-left p-3.5 rounded-xl border text-xs md:text-sm font-medium transition flex items-start gap-3 ${
+            isSelected
+              ? "border-indigo-600 bg-indigo-50/60 text-indigo-950 font-semibold shadow-xs"
+              : "border-slate-200 bg-white hover:bg-slate-50 text-slate-700"
+          }`;
+
+          btn.innerHTML = `
+          <span class="w-6 h-6 flex-shrink-0 rounded-lg flex items-center justify-center font-bold text-xs ${
+            isSelected
+              ? "bg-indigo-600 text-white"
+              : "bg-slate-100 text-slate-600"
+          }">${labels[oIdx]}</span>
+          <span class="pt-0.5 leading-relaxed">${opt}</span>
+        `;
+          optContainer.appendChild(btn);
+        });
+
+        document.getElementById("btn-prev").disabled = idx === 0;
+        document.getElementById("btn-next").disabled =
+          idx === activeQuestions.length - 1;
+
+        renderGridSheet();
+        lucide.createIcons();
+      }
+
+      function selectOption(qId, oIdx) {
+        userAnswers[qId] = oIdx;
+        loadQuestion(currentQIdx);
+      }
+
+      function toggleDoubtful() {
+        const q = activeQuestions[currentQIdx];
+        doubtfulAnswers[q.id] = !doubtfulAnswers[q.id];
+        loadQuestion(currentQIdx);
+      }
+
+      function prevQuestion() {
+        if (currentQIdx > 0) loadQuestion(currentQIdx - 1);
+      }
+
+      function nextQuestion() {
+        if (currentQIdx < activeQuestions.length - 1)
+          loadQuestion(currentQIdx + 1);
+      }
+
+      // Modal submit
+      function showSubmitModal() {
+        document.getElementById("submit-modal").classList.remove("hidden");
+      }
+      function closeSubmitModal() {
+        document.getElementById("submit-modal").classList.add("hidden");
+      }
+
+      function confirmSubmitExam() {
+        closeSubmitModal();
+        clearInterval(examTimerInterval);
+
+        document.getElementById("cbt-running").classList.add("hidden");
+        document.getElementById("cbt-result").classList.remove("hidden");
+
+        calculateDiagnostics();
+      }
+
+      // --- FITUR CBT: PERHITUNGAN SKOR & ANALITIK ---
+      let finalStats = {};
+
+      function calculateDiagnostics() {
+        let rawScore = 0;
+        let correctCount = 0;
+        let wrongCount = 0;
+        let emptyCount = 0;
+
+        const subjectStats = {
+          Ekonomi: { correct: 0, total: 0 },
+          Sosiologi: { correct: 0, total: 0 },
+          Geografi: { correct: 0, total: 0 },
+          Sejarah: { correct: 0, total: 0 },
+        };
+
+        activeQuestions.forEach((q) => {
+          if (!subjectStats[q.subject])
+            subjectStats[q.subject] = { correct: 0, total: 0 };
+          subjectStats[q.subject].total++;
+
+          const userAns = userAnswers[q.id];
+          if (userAns === undefined) {
+            emptyCount++;
+          } else if (userAns === q.correct) {
+            correctCount++;
+            rawScore += 4;
+            subjectStats[q.subject].correct++;
+          } else {
+            wrongCount++;
+            rawScore -= 1;
+          }
+        });
+
+        const maxScore = activeQuestions.length * 4;
+        const percentage = Math.max(0, Math.round((rawScore / maxScore) * 100));
+
+        let medalTitle = "Peserta Pembinaan KSR";
+        let medalIcon = "🎖️";
+        let medalColor = "text-slate-700";
+
+        if (percentage >= 80) {
+          medalTitle = "Peraih Medali Emas (Gold Medalist)";
+          medalIcon = "🥇";
+          medalColor = "text-amber-500";
+        } else if (percentage >= 65) {
+          medalTitle = "Peraih Medali Perak (Silver Medalist)";
+          medalIcon = "🥈";
+          medalColor = "text-slate-400";
+        } else if (percentage >= 50) {
+          medalTitle = "Peraih Medali Perunggu (Bronze Medalist)";
+          medalIcon = "🥉";
+          medalColor = "text-amber-700";
+        }
+
+        document.getElementById("medal-icon-box").innerText = medalIcon;
+        const titleEl = document.getElementById("result-medal-title");
+        titleEl.innerText = medalTitle;
+        titleEl.className = `text-2xl font-black ${medalColor}`;
+
+        document.getElementById("stat-score").innerText =
+          `${rawScore} / ${maxScore}`;
+        document.getElementById("stat-correct").innerText =
+          `${correctCount} Soal`;
+        document.getElementById("stat-wrong").innerText = `${wrongCount} Soal`;
+        document.getElementById("stat-empty").innerText = `${emptyCount} Soal`;
+
+        // Render Bar Diagnostik
+        const diagContainer = document.getElementById("diagnostic-bars");
+        diagContainer.innerHTML = "";
+
+        Object.entries(subjectStats).forEach(([subj, data]) => {
+          if (data.total === 0) return;
+          const subPct = Math.round((data.correct / data.total) * 100);
+          const isWeak = subPct < 60;
+
+          const row = document.createElement("div");
+          row.className = "space-y-1.5";
+          row.innerHTML = `
+          <div class="flex justify-between text-xs font-bold">
+            <span class="text-slate-700">${subj}</span>
+            <span class="${isWeak ? "text-rose-600" : "text-emerald-600"}">${data.correct} / ${data.total} Benar (${subPct}%)</span>
           </div>
+          <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+            <div class="h-full rounded-full transition-all duration-700 ${isWeak ? "bg-rose-500" : "bg-emerald-500"}" style="width: ${subPct}%"></div>
+          </div>
+          ${
+            isWeak
+              ? `
+            <div class="flex items-center justify-between pt-0.5">
+              <span class="text-[11px] text-rose-500 flex items-center gap-1"><i data-lucide="shield-alert" class="w-3.5 h-3.5"></i> Perlu penguatan materi di modul</span>
+              <button onclick="switchTab('modul'); filterCategory('${subj.toLowerCase()}')" class="text-[11px] text-indigo-600 font-semibold hover:underline">Buka Bab ${subj} &rarr;</button>
+            </div>
+          `
+              : ""
+          }
+        `;
+          diagContainer.appendChild(row);
+        });
+
+        finalStats = { rawScore, maxScore, correctCount, wrongCount };
+        lucide.createIcons();
+      }
+
+      // --- FITUR REVIEW KUNCI & PEMBAHASAN ---
+      function openReviewMode() {
+        document.getElementById("cbt-result").classList.add("hidden");
+        document.getElementById("cbt-review").classList.remove("hidden");
+
+        const container = document.getElementById("review-container");
+        container.innerHTML = "";
+        const labels = ["A", "B", "C", "D"];
+
+        activeQuestions.forEach((q, idx) => {
+          const uAns = userAnswers[q.id];
+          const isCorrect = uAns === q.correct;
+          const isEmpty = uAns === undefined;
+
+          const card = document.createElement("div");
+          card.className =
+            "bg-white rounded-xl border border-slate-200 p-5 shadow-sm space-y-3";
+          card.innerHTML = `
+          <div class="flex items-center justify-between text-xs pb-2 border-b border-slate-100">
+            <span class="font-bold text-slate-500">Soal No ${idx + 1} &bull; ${q.subject}</span>
+            <span class="font-bold px-2 py-0.5 rounded-full ${
+              isEmpty
+                ? "bg-slate-100 text-slate-600"
+                : isCorrect
+                  ? "bg-emerald-100 text-emerald-700"
+                  : "bg-rose-100 text-rose-700"
+            }">
+              ${isEmpty ? "Tidak Dijawab (0)" : isCorrect ? "Benar (+4)" : "Salah (-1)"}
+            </span>
+          </div>
+
+          <p class="text-sm font-semibold text-slate-800 leading-relaxed">${q.question}</p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs">
+            ${q.options
+              .map((opt, oIdx) => {
+                const isKunci = oIdx === q.correct;
+                const isDipilih = oIdx === uAns;
+                let style = "bg-slate-50 border-slate-200 text-slate-600";
+                if (isKunci)
+                  style =
+                    "bg-emerald-50 border-emerald-500 text-emerald-950 font-bold";
+                else if (isDipilih && !isCorrect)
+                  style = "bg-rose-50 border-rose-400 text-rose-950 font-bold";
+
+                return `
+                <div class="p-2.5 rounded-xl border flex items-center gap-2.5 ${style}">
+                  <span class="w-5 h-5 rounded flex items-center justify-center text-[10px] font-bold bg-white/80">${labels[oIdx]}</span>
+                  <span>${opt}</span>
+                </div>
+              `;
+              })
+              .join("")}
+          </div>
+
+          <div class="p-3 bg-indigo-50/70 border border-indigo-100 rounded-xl text-xs text-indigo-950 mt-2 leading-relaxed">
+            <strong class="block text-indigo-700 mb-1 flex items-center gap-1.5"><i data-lucide="help-circle" class="w-3.5 h-3.5"></i> Pembahasan Konsep Guru:</strong>
+            ${q.explanation}
+          </div>
+        `;
+          container.appendChild(card);
+        });
+        lucide.createIcons();
+      }
+
+      function backToResult() {
+        document.getElementById("cbt-review").classList.add("hidden");
+        document.getElementById("cbt-result").classList.remove("hidden");
+      }
+
+      // --- FITUR CHAT TANYA GURU ---
+      const KNOWLEDGE_BASE = [
+        {
+          keys: ["inflasi", "demand", "cost-push", "harga naik"],
+          answer:
+            "Inflasi adalah kenaikan harga barang/jasa secara umum dan terus menerus. Ada 2 pemicu utama:\n1. Demand-Pull: Tarikan permintaan masyarakat yang terlalu tinggi.\n2. Cost-Push: Kenaikan biaya produksi (misal kenaikan bahan baku atau BBM).",
+        },
+        {
+          keys: [
+            "hindu",
+            "buddha",
+            "teori",
+            "masuknya",
+            "brahmana",
+            "ksatria",
+            "waisya",
+            "arus balik",
+          ],
+          answer:
+            "Ada 4 teori masuknya Hindu-Buddha ke Nusantara:\n1. Teori Brahmana (pendeta/kaum agama)\n2. Teori Ksatria (bangsawan/prajurit pelarian perang)\n3. Teori Waisya (pedagang)\n4. Teori Arus Balik (pemuda Nusantara belajar ke India lalu pulang berdakwah). Teori Arus Balik dianggap sangat kuat karena bukti Prasasti Nalanda.",
+        },
+        {
+          keys: [
+            "wallace",
+            "weber",
+            "fauna",
+            "peralihan",
+            "asiatis",
+            "australis",
+          ],
+          answer:
+            "Pembagian fauna Nusantara:\n- Asiatis (Barat): Mamalia besar seperti Gajah, Badak, Harimau.\n- Garis Wallace membatasi Asiatis & Peralihan.\n- Peralihan (Tengah): Endemik khas seperti Komodo, Anoa, Babirusa.\n- Garis Weber membatasi Peralihan & Australis.\n- Australis (Timur): Hewan berkantong & burung eksotis seperti Kanguru pohon dan Cendrawasih.",
+        },
+        {
+          keys: ["mobilitas", "vertikal", "antargenerasi", "intragenerasi"],
+          answer:
+            "Mobilitas Sosial adalah pergeseran posisi/status sosial:\n- Vertikal Naik (Social Climbing): Kenaikan pangkat.\n- Antargenerasi: Terjadi pada garis keturunan yang berbeda (contoh: kakek petani punya cucu dokter).\n- Intragenerasi: Terjadi pada diri seseorang dalam rentang hidupnya sendiri (contoh: staf dipromosikan jadi manajer).",
+        },
+        {
+          keys: ["politik etis", "van deventer", "edukasi", "irigasi"],
+          answer:
+            "Politik Etis (1901) diperkenalkan oleh C.Th. van Deventer sebagai kebijakan balas budi Belanda. Terdiri atas: Irigasi (pengairan), Emigrasi (transmigrasi), dan Edukasi (pendidikan). Jalur edukasi melahirkan priyayi baru terpelajar yang mendirikan organisasi modern Budi Utomo.",
+        },
+      ];
+
+      function handleChatSubmit(e) {
+        e.preventDefault();
+        const input = document.getElementById("chat-input");
+        const q = input.value.trim();
+        if (!q) return;
+
+        appendChatMessage("user", q);
+        input.value = "";
+
+        setTimeout(() => {
+          const lower = q.toLowerCase();
+          let matched = KNOWLEDGE_BASE.find((item) =>
+            item.keys.some((k) => lower.includes(k)),
+          );
+
+          let ans = matched
+            ? matched.answer
+            : "Pertanyaan yang sangat bagus! Konsep ini berkaitan dengan hubungan manusia dan lingkungannya. Coba periksa kembali topik terkait di tab **Modul Materi** untuk pendalaman atau gunakan kata kunci seperti 'inflasi', 'teori hindu', 'garis wallace', atau 'mobilitas'.";
+
+          appendChatMessage("guru", ans);
+        }, 500);
+      }
+
+      function askPreset(txt) {
+        document.getElementById("chat-input").value = txt;
+        handleChatSubmit(new Event("submit"));
+      }
+
+      function appendChatMessage(sender, text) {
+        const chatBox = document.getElementById("chat-box");
+        const isGuru = sender === "guru";
+
+        const wrap = document.createElement("div");
+        wrap.className = `flex items-start gap-2.5 ${isGuru ? "" : "flex-row-reverse"}`;
+
+        wrap.innerHTML = `
+        <div class="w-7 h-7 rounded-lg ${isGuru ? "bg-indigo-600 text-white" : "bg-slate-800 text-white"} flex-shrink-0 flex items-center justify-center font-bold text-[10px]">
+          ${isGuru ? "GURU" : "KAMU"}
         </div>
-      );
-
-      const ModulesScreen = ({ defaultSubject }) => {
-        const [activeSub, setActiveSub] = React.useState(
-          defaultSubject || "ekonomi",
-        );
-
-        return (
-          <div className="flex flex-col h-full animate-fade-in max-w-4xl mx-auto p-4 md:p-6 pb-24 md:pb-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 px-1">
-              <div>
-                <h2 className="text-2xl font-bold text-slate-800">
-                  Modul Pembelajaran KSR
-                </h2>
-                <p className="text-xs text-slate-500">
-                  Pahami konsep penting sebelum memasuki simulasi ujian CBT
-                </p>
-              </div>
-            </div>
-
-            {/* Subject Tabs */}
-            <div className="flex overflow-x-auto gap-2 mb-6 custom-scrollbar pb-2 px-1">
-              {Object.keys(modulesData).map((key) => (
-                <button
-                  key={key}
-                  onClick={() => setActiveSub(key)}
-                  className={`px-4 py-2.5 rounded-xl font-semibold text-xs tracking-wide whitespace-nowrap transition-all border ${
-                    activeSub === key
-                      ? `${modulesData[key].color} text-white border-transparent shadow-sm`
-                      : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50"
-                  }`}
-                >
-                  {modulesData[key].title}
-                </button>
-              ))}
-            </div>
-
-            {/* Content Cards */}
-            <div className="grid md:grid-cols-2 gap-4 px-1">
-              {modulesData[activeSub].content.map((item, idx) => (
-                <div
-                  key={idx}
-                  className="p-5 rounded-2xl border border-slate-200 bg-white shadow-sm flex flex-col hover:border-slate-300 transition"
-                >
-                  <span
-                    className={`text-[11px] font-bold px-2 py-0.5 rounded w-max mb-2.5 ${modulesData[activeSub].badge}`}
-                  >
-                    Topik {idx + 1}
-                  </span>
-                  <h3
-                    className={`text-base font-bold mb-2 ${modulesData[activeSub].textColor}`}
-                  >
-                    {item.title}
-                  </h3>
-                  <p className="text-slate-600 text-xs md:text-sm leading-relaxed flex-grow">
-                    {item.desc}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        );
-      };
-
-      const ChatScreen = () => {
-        const [messages, setMessages] = React.useState([
-          {
-            sender: "bot",
-            text: 'Halo! Saya Guru Virtual KSR IPS. Kamu bisa menanyakan konsep apa pun dari kisi-kisi Ekonomi, Sosiologi, Geografi, atau Sejarah (misal: "Apa beda pertumbuhan dan pembangunan ekonomi?", "Jelaskan politik etis", atau "Apa itu kelangkaan?").',
-          },
-        ]);
-        const [input, setInput] = React.useState("");
-        const endOfMessagesRef = React.useRef(null);
-
-        const scrollToBottom = () => {
-          endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
-        };
-
-        React.useEffect(() => {
-          scrollToBottom();
-        }, [messages]);
-
-        const handleSend = (e) => {
-          e.preventDefault();
-          if (!input.trim()) return;
-
-          const userMsg = input.trim();
-          setMessages((prev) => [...prev, { sender: "user", text: userMsg }]);
-          setInput("");
-
-          setTimeout(() => {
-            const botReply = getBotResponse(userMsg);
-            setMessages((prev) => [...prev, { sender: "bot", text: botReply }]);
-          }, 500);
-        };
-
-        return (
-          <div className="flex flex-col h-[84vh] md:h-[88vh] max-w-2xl mx-auto animate-fade-in bg-white md:rounded-2xl md:shadow-sm md:border md:border-slate-200 mt-0 md:mt-4 overflow-hidden">
-            <div className="bg-purple-700 p-4 text-white shadow-sm z-10 flex items-center gap-3">
-              <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center text-white">
-                <Icons.Message />
-              </div>
-              <div>
-                <h2 className="font-bold text-sm md:text-base">
-                  Guru Virtual IPS
-                </h2>
-                <p className="text-[11px] text-purple-200">
-                  Asisten Belajar Interaktif KSR SMP
-                </p>
-              </div>
-            </div>
-
-            <div className="flex-1 p-4 overflow-y-auto custom-scrollbar bg-slate-50 flex flex-col gap-3.5 pb-24 md:pb-4">
-              {messages.map((msg, idx) => (
-                <div
-                  key={idx}
-                  className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
-                >
-                  <div
-                    className={`max-w-[85%] p-3.5 rounded-2xl text-xs md:text-sm leading-relaxed ${
-                      msg.sender === "user"
-                        ? "bg-purple-600 text-white rounded-tr-none shadow-sm"
-                        : "bg-white border border-slate-200 text-slate-800 rounded-tl-none shadow-sm"
-                    }`}
-                  >
-                    {msg.text}
-                  </div>
-                </div>
-              ))}
-              <div ref={endOfMessagesRef} />
-            </div>
-
-            <div className="p-3 bg-white border-t border-slate-200 fixed md:relative bottom-16 md:bottom-0 left-0 right-0 z-20">
-              <form
-                onSubmit={handleSend}
-                className="flex gap-2 max-w-2xl mx-auto w-full"
-              >
-                <input
-                  type="text"
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  placeholder="Ketik pertanyaan konsep di sini..."
-                  className="flex-1 bg-slate-100 rounded-xl px-4 py-2.5 text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
-                />
-                <button
-                  type="submit"
-                  className="bg-purple-600 text-white px-4 py-2.5 rounded-xl flex items-center justify-center hover:bg-purple-700 transition disabled:opacity-50"
-                  disabled={!input.trim()}
-                >
-                  <Icons.Send />
-                </button>
-              </form>
-            </div>
-          </div>
-        );
-      };
-
-      const QuizScreen = ({ navigateToModule }) => {
-        const EXAM_DURATION = 20 * 60; // 20 Menit
-
-        const [examStage, setExamStage] = React.useState("intro"); // 'intro', 'testing', 'result', 'review'
-        const [currentQIndex, setCurrentQIndex] = React.useState(0);
-        const [answers, setAnswers] = React.useState({});
-        const [doubtful, setDoubtful] = React.useState({});
-        const [timeLeft, setTimeLeft] = React.useState(EXAM_DURATION);
-        const [showSubmitModal, setShowSubmitModal] = React.useState(false);
-        const [reviewFilter, setReviewFilter] = React.useState("all"); // 'all', 'wrong', 'doubt'
-
-        // Countdown timer handler
-        React.useEffect(() => {
-          let timer = null;
-          if (examStage === "testing" && timeLeft > 0) {
-            timer = setInterval(() => {
-              setTimeLeft((prev) => prev - 1);
-            }, 1000);
-          } else if (timeLeft === 0 && examStage === "testing") {
-            setExamStage("result");
-          }
-          return () => clearInterval(timer);
-        }, [examStage, timeLeft]);
-
-        const startExam = () => {
-          setAnswers({});
-          setDoubtful({});
-          setCurrentQIndex(0);
-          setTimeLeft(EXAM_DURATION);
-          setShowSubmitModal(false);
-          setExamStage("testing");
-        };
-
-        const toggleDoubt = () => {
-          setDoubtful((prev) => ({
-            ...prev,
-            [currentQIndex]: !prev[currentQIndex],
-          }));
-        };
-
-        const selectOption = (optIdx) => {
-          setAnswers((prev) => ({
-            ...prev,
-            [currentQIndex]: optIdx,
-          }));
-        };
-
-        const formatTime = (seconds) => {
-          const m = Math.floor(seconds / 60);
-          const s = seconds % 60;
-          return `${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
-        };
-
-        // Hitung skor Olimpiade (+4 Benar, -1 Salah, 0 Kosong)
-        const calculateResults = () => {
-          let correctCount = 0;
-          let wrongCount = 0;
-          let emptyCount = 0;
-          let totalPoints = 0;
-
-          const breakdown = {
-            Ekonomi: { correct: 0, total: 0 },
-            Sosiologi: { correct: 0, total: 0 },
-            Geografi: { correct: 0, total: 0 },
-            Sejarah: { correct: 0, total: 0 },
-          };
-
-          quizData.forEach((q, idx) => {
-            breakdown[q.subject].total += 1;
-            const ans = answers[idx];
-
-            if (ans === undefined) {
-              emptyCount += 1;
-            } else if (ans === q.answer) {
-              correctCount += 1;
-              totalPoints += 4;
-              breakdown[q.subject].correct += 1;
-            } else {
-              wrongCount += 1;
-              totalPoints -= 1;
-            }
-          });
-
-          const maxPossiblePoints = quizData.length * 4;
-          const percentage = Math.max(
-            0,
-            Math.round((Math.max(0, totalPoints) / maxPossiblePoints) * 100),
-          );
-
-          let medal = {
-            title: "Peserta Pembinaan KSR",
-            subtitle: "Terus tingkatkan belajar dan bedah modul materi.",
-            color: "text-slate-700",
-            badgeColor: "bg-slate-100 text-slate-700 border-slate-300",
-            iconColor: "text-slate-500 bg-slate-100",
-          };
-
-          if (percentage >= 85) {
-            medal = {
-              title: "Peraih Medali Emas (Gold Medalist)",
-              subtitle:
-                "Luar Biasa! Kemampuan penalaran dan konsep IPS kamu sangat matang!",
-              color: "text-amber-700",
-              badgeColor: "bg-amber-100 text-amber-800 border-amber-300",
-              iconColor: "text-amber-500 bg-amber-50",
-            };
-          } else if (percentage >= 70) {
-            medal = {
-              title: "Peraih Medali Perak (Silver Medalist)",
-              subtitle:
-                "Sangat Bagus! Sedikit evaluasi lagi menuju podium juara utama.",
-              color: "text-slate-800",
-              badgeColor: "bg-slate-200 text-slate-800 border-slate-400",
-              iconColor: "text-slate-600 bg-slate-100",
-            };
-          } else if (percentage >= 50) {
-            medal = {
-              title: "Peraih Medali Perunggu (Bronze Medalist)",
-              subtitle:
-                "Bagus! Kamu memiliki pondasi pemahaman materi yang cukup baik.",
-              color: "text-orange-800",
-              badgeColor: "bg-orange-100 text-orange-800 border-orange-300",
-              iconColor: "text-orange-500 bg-orange-50",
-            };
-          }
-
-          return {
-            correctCount,
-            wrongCount,
-            emptyCount,
-            totalPoints,
-            maxPossiblePoints,
-            percentage,
-            breakdown,
-            medal,
-          };
-        };
-
-        if (examStage === "intro") {
-          return (
-            <div className="p-4 md:p-8 animate-fade-in flex flex-col items-center justify-center min-h-[82vh]">
-              <div className="bg-white rounded-2xl border border-slate-200 shadow-sm max-w-xl w-full p-6 md:p-8">
-                <div className="flex items-center gap-2.5 text-orange-600 mb-2 font-bold text-xs uppercase tracking-wider">
-                  <Icons.Trophy /> Simulasi Resmi Berbasis Komputer (CBT)
-                </div>
-                <h2 className="text-2xl font-black text-slate-800 mb-2">
-                  Ujian Kompetisi Sains IPS SMP
-                </h2>
-                <p className="text-slate-600 text-xs md:text-sm mb-6 leading-relaxed">
-                  Simulasi ini menggunakan format waktu nyata, tombol ragu-ragu,
-                  kisi nomor soal, dan sistem penalti standar Olimpiade Sains.
-                </p>
-
-                <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 mb-6 space-y-2.5 text-xs text-slate-700">
-                  <div className="font-bold text-slate-900 pb-1 border-b border-slate-200">
-                    Aturan Skoring & Pelaksanaan:
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span>Jawaban Benar</span>
-                    <span className="font-bold text-emerald-600">+4 Poin</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span>Jawaban Salah</span>
-                    <span className="font-bold text-rose-600">
-                      -1 Poin (Penalti)
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span>Tidak Menjawab</span>
-                    <span className="font-bold text-slate-500">0 Poin</span>
-                  </div>
-                  <div className="flex justify-between items-center pt-1 border-t border-slate-200">
-                    <span>Jumlah Soal</span>
-                    <span className="font-semibold text-slate-800">
-                      20 Soal (Ekonomi, Sosiologi, Geografi, Sejarah)
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span>Batas Waktu CBT</span>
-                    <span className="font-bold text-indigo-600">
-                      20 Menit (Auto-submit)
-                    </span>
-                  </div>
-                </div>
-
-                <button
-                  onClick={startExam}
-                  className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3.5 px-4 rounded-xl transition text-sm shadow-sm flex items-center justify-center gap-2"
-                >
-                  <Icons.Trophy /> Mulai Ujian CBT Sekarang
-                </button>
-              </div>
-            </div>
-          );
-        }
-
-        if (examStage === "testing") {
-          const currentQ = quizData[currentQIndex];
-          const isSelected = answers[currentQIndex] !== undefined;
-          const isDoubt = !!doubtful[currentQIndex];
-
-          const answeredCount = Object.keys(answers).length;
-          const doubtCount = Object.values(doubtful).filter(Boolean).length;
-          const emptyCount = quizData.length - answeredCount;
-
-          return (
-            <div className="min-h-[85vh] flex flex-col p-2 md:p-6 max-w-5xl mx-auto animate-fade-in pb-24 md:pb-6">
-              {/* Header CBT with Sticky Timer */}
-              <div className="bg-white rounded-2xl border border-slate-200 p-4 mb-4 shadow-sm flex flex-wrap items-center justify-between gap-3 sticky top-2 z-20">
-                <div className="flex items-center gap-2">
-                  <span className="font-bold text-sm md:text-base text-slate-800">
-                    Soal No. {currentQIndex + 1}
-                  </span>
-                  <span
-                    className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full ${
-                      currentQ.subject === "Ekonomi"
-                        ? "bg-blue-100 text-blue-700"
-                        : currentQ.subject === "Sosiologi"
-                          ? "bg-purple-100 text-purple-700"
-                          : currentQ.subject === "Geografi"
-                            ? "bg-emerald-100 text-emerald-700"
-                            : "bg-amber-100 text-amber-700"
-                    }`}
-                  >
-                    {currentQ.subject}
-                  </span>
-                </div>
-
-                <div className="flex items-center gap-2">
-                  <div
-                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl font-mono text-xs md:text-sm font-bold border ${
-                      timeLeft < 180
-                        ? "bg-rose-50 border-rose-300 text-rose-600 animate-timer-warning"
-                        : "bg-slate-50 border-slate-200 text-slate-700"
-                    }`}
-                  >
-                    <Icons.Clock />
-                    <span>{formatTime(timeLeft)}</span>
-                  </div>
-
-                  <button
-                    onClick={() => setShowSubmitModal(true)}
-                    className="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold transition shadow-sm"
-                  >
-                    Selesai Ujian
-                  </button>
-                </div>
-              </div>
-
-              {/* Workspace Grid */}
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 flex-1">
-                {/* Question Card (8 cols) */}
-                <div className="lg:col-span-8 bg-white rounded-2xl border border-slate-200 p-5 md:p-6 shadow-sm flex flex-col justify-between">
-                  <div>
-                    <div className="flex items-center justify-between pb-3 border-b border-slate-100 mb-4">
-                      <span className="text-xs text-slate-500">
-                        Pilihlah salah satu jawaban yang paling tepat
-                      </span>
-                      <button
-                        onClick={toggleDoubt}
-                        className={`flex items-center gap-1 text-xs font-bold px-3 py-1.5 rounded-lg border transition ${
-                          isDoubt
-                            ? "bg-amber-400 border-amber-500 text-slate-900 shadow-sm"
-                            : "bg-white border-slate-300 text-slate-600 hover:bg-slate-50"
-                        }`}
-                      >
-                        <Icons.Alert />
-                        {isDoubt ? "Ragu-Ragu (Ditandai)" : "Tandai Ragu-Ragu"}
-                      </button>
-                    </div>
-
-                    <h3 className="text-sm md:text-base font-medium text-slate-800 leading-relaxed mb-6">
-                      {currentQ.q}
-                    </h3>
-
-                    <div className="space-y-3 mb-6">
-                      {currentQ.options.map((opt, optIdx) => {
-                        const isThisSelected =
-                          answers[currentQIndex] === optIdx;
-                        return (
-                          <button
-                            key={optIdx}
-                            onClick={() => selectOption(optIdx)}
-                            className={`w-full text-left p-3.5 md:p-4 rounded-xl border text-xs md:text-sm font-medium transition flex items-start gap-3 ${
-                              isThisSelected
-                                ? "border-orange-500 bg-orange-50/70 text-orange-950 shadow-sm ring-1 ring-orange-400"
-                                : "border-slate-200 hover:border-slate-300 hover:bg-slate-50 text-slate-700 bg-white"
-                            }`}
-                          >
-                            <span
-                              className={`w-6 h-6 flex-shrink-0 rounded-lg flex items-center justify-center font-bold text-xs ${
-                                isThisSelected
-                                  ? "bg-orange-500 text-white"
-                                  : "bg-slate-100 text-slate-600"
-                              }`}
-                            >
-                              {String.fromCharCode(65 + optIdx)}
-                            </span>
-                            <span className="pt-0.5 leading-relaxed">
-                              {opt}
-                            </span>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-
-                  {/* Pagination Buttons */}
-                  <div className="flex items-center justify-between pt-4 border-t border-slate-100">
-                    <button
-                      disabled={currentQIndex === 0}
-                      onClick={() => setCurrentQIndex(currentQIndex - 1)}
-                      className="px-4 py-2 rounded-xl text-xs font-semibold border border-slate-300 text-slate-600 hover:bg-slate-50 disabled:opacity-40 transition"
-                    >
-                      ← Sebelumnya
-                    </button>
-
-                    {currentQIndex === quizData.length - 1 ? (
-                      <button
-                        onClick={() => setShowSubmitModal(true)}
-                        className="px-5 py-2 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white transition shadow-sm"
-                      >
-                        Kumpulkan Ujian
-                      </button>
-                    ) : (
-                      <button
-                        onClick={() => setCurrentQIndex(currentQIndex + 1)}
-                        className="px-4 py-2 rounded-xl text-xs font-semibold bg-orange-500 hover:bg-orange-600 text-white transition shadow-sm"
-                      >
-                        Selanjutnya →
-                      </button>
-                    )}
-                  </div>
-                </div>
-
-                <div className="lg:col-span-4 bg-white rounded-2xl border border-slate-200 p-5 shadow-sm flex flex-col justify-between">
-                  <div>
-                    <h4 className="font-bold text-xs uppercase tracking-wider text-slate-500 mb-3 pb-2 border-b border-slate-100">
-                      Kisi Navigasi Nomor Soal
-                    </h4>
-
-                    <div className="grid grid-cols-5 gap-2 mb-4">
-                      {quizData.map((q, idx) => {
-                        const answered = answers[idx] !== undefined;
-                        const isDoubtItem = !!doubtful[idx];
-                        const isCurrent = currentQIndex === idx;
-
-                        let colorClass =
-                          "bg-slate-100 border-slate-200 text-slate-600";
-                        if (isDoubtItem) {
-                          colorClass =
-                            "bg-amber-400 border-amber-500 text-slate-900 font-bold";
-                        } else if (answered) {
-                          colorClass =
-                            "bg-emerald-600 border-emerald-700 text-white font-bold";
-                        }
-
-                        return (
-                          <button
-                            key={idx}
-                            onClick={() => setCurrentQIndex(idx)}
-                            className={`h-9 rounded-xl border text-xs font-semibold transition flex items-center justify-center relative ${colorClass} ${
-                              isCurrent
-                                ? "ring-2 ring-orange-500 ring-offset-2"
-                                : ""
-                            }`}
-                          >
-                            {idx + 1}
-                          </button>
-                        );
-                      })}
-                    </div>
-
-                    {/* Legends */}
-                    <div className="space-y-1.5 text-[11px] text-slate-600 border-t border-slate-100 pt-3">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <span className="w-3 h-3 rounded bg-emerald-600"></span>
-                          <span>Sudah Dijawab</span>
-                        </div>
-                        <span className="font-bold text-slate-800">
-                          {answeredCount}
-                        </span>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <span className="w-3 h-3 rounded bg-amber-400"></span>
-                          <span>Ragu-Ragu</span>
-                        </div>
-                        <span className="font-bold text-slate-800">
-                          {doubtCount}
-                        </span>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <span className="w-3 h-3 rounded bg-slate-200"></span>
-                          <span>Belum Dijawab</span>
-                        </div>
-                        <span className="font-bold text-slate-800">
-                          {emptyCount}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="pt-4 border-t border-slate-100 mt-4">
-                    <button
-                      onClick={() => setShowSubmitModal(true)}
-                      className="w-full py-2.5 rounded-xl border border-emerald-500 text-emerald-700 bg-emerald-50 hover:bg-emerald-100 text-xs font-bold transition"
-                    >
-                      Kumpul Jawaban Sekarang
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              {/* Confirmation Modal */}
-              {showSubmitModal && (
-                <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-                  <div className="bg-white rounded-2xl max-w-md w-full p-6 shadow-xl border border-slate-200 animate-fade-in">
-                    <div className="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mb-3">
-                      <Icons.Check />
-                    </div>
-                    <h3 className="text-lg font-bold text-slate-800 mb-2">
-                      Kumpulkan Ujian KSR?
-                    </h3>
-                    <p className="text-xs text-slate-600 mb-4 leading-relaxed">
-                      Pastikan seluruh jawaban telah Anda periksa. Soal yang
-                      belum dijawab bernilai 0 dan jawaban salah terkena penalti
-                      -1.
-                    </p>
-
-                    <div className="bg-slate-50 p-3 rounded-xl border border-slate-200 mb-5 text-xs space-y-1 text-slate-700">
-                      <div className="flex justify-between">
-                        <span>Terjawab:</span>
-                        <span className="font-bold text-emerald-600">
-                          {answeredCount} soal
-                        </span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>Ragu-ragu:</span>
-                        <span className="font-bold text-amber-600">
-                          {doubtCount} soal
-                        </span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>Belum dijawab:</span>
-                        <span className="font-bold text-rose-600">
-                          {emptyCount} soal
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="flex gap-2">
-                      <button
-                        onClick={() => setShowSubmitModal(false)}
-                        className="flex-1 py-2.5 rounded-xl border border-slate-200 text-slate-600 font-semibold text-xs hover:bg-slate-50"
-                      >
-                        Periksa Kembali
-                      </button>
-                      <button
-                        onClick={() => {
-                          setShowSubmitModal(false);
-                          setExamStage("result");
-                        }}
-                        className="flex-1 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-sm"
-                      >
-                        Ya, Kumpulkan
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-          );
-        }
-
-        if (examStage === "result") {
-          const results = calculateResults();
-
-          return (
-            <div className="p-4 md:p-8 animate-fade-in max-w-4xl mx-auto space-y-6 pb-24 md:pb-8">
-              {/* Medal & Main Card */}
-              <div className="bg-white rounded-2xl border border-slate-200 p-6 md:p-8 text-center shadow-sm relative overflow-hidden">
-                <div className="inline-flex p-4 rounded-2xl bg-amber-50 text-amber-500 mb-3">
-                  <Icons.Trophy />
-                </div>
-                <span className="block text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-1">
-                  Hasil Akhir Evaluasi CBT KSR IPS
-                </span>
-                <h2
-                  className={`text-2xl md:text-3xl font-black mb-1 ${results.medal.color}`}
-                >
-                  {results.medal.title}
-                </h2>
-                <p className="text-xs md:text-sm text-slate-500 max-w-md mx-auto mb-6">
-                  {results.medal.subtitle}
-                </p>
-
-                {/* Olympiad Stat Grid */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl mx-auto mb-6">
-                  <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                    <span className="text-[11px] text-slate-500 block mb-0.5">
-                      Total Poin KSR
-                    </span>
-                    <span className="text-xl font-black text-slate-800">
-                      {results.totalPoints}{" "}
-                      <span className="text-xs font-normal text-slate-400">
-                        / {results.maxPossiblePoints}
-                      </span>
-                    </span>
-                  </div>
-                  <div className="p-3 bg-emerald-50 rounded-xl border border-emerald-200">
-                    <span className="text-[11px] text-emerald-600 block mb-0.5">
-                      Benar (+4)
-                    </span>
-                    <span className="text-xl font-black text-emerald-700">
-                      {results.correctCount}{" "}
-                      <span className="text-xs font-normal">Soal</span>
-                    </span>
-                  </div>
-                  <div className="p-3 bg-rose-50 rounded-xl border border-rose-200">
-                    <span className="text-[11px] text-rose-600 block mb-0.5">
-                      Salah (-1)
-                    </span>
-                    <span className="text-xl font-black text-rose-700">
-                      {results.wrongCount}{" "}
-                      <span className="text-xs font-normal">Soal</span>
-                    </span>
-                  </div>
-                  <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                    <span className="text-[11px] text-slate-500 block mb-0.5">
-                      Kosong (0)
-                    </span>
-                    <span className="text-xl font-black text-slate-700">
-                      {results.emptyCount}{" "}
-                      <span className="text-xs font-normal">Soal</span>
-                    </span>
-                  </div>
-                </div>
-
-                {/* Action Buttons */}
-                <div className="flex flex-wrap items-center justify-center gap-3">
-                  <button
-                    onClick={() => setExamStage("review")}
-                    className="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs md:text-sm flex items-center gap-2 shadow-sm"
-                  >
-                    <Icons.Eye /> Lihat Kunci & Pembahasan Konsep
-                  </button>
-                  <button
-                    onClick={startExam}
-                    className="px-5 py-2.5 rounded-xl border border-slate-300 text-slate-700 hover:bg-slate-50 font-semibold text-xs md:text-sm flex items-center gap-2 transition"
-                  >
-                    <Icons.Rotate /> Ulangi Simulasi Ujian
-                  </button>
-                </div>
-              </div>
-
-              {/* Subject Diagnostics Analytics */}
-              <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
-                <div className="flex items-center gap-2 mb-4 pb-3 border-b border-slate-100 font-bold text-slate-800 text-sm md:text-base">
-                  <Icons.BarChart />
-                  <span>Diagnostik Performa Berdasarkan Mata Pelajaran</span>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-4">
-                  {Object.entries(results.breakdown).map(([subject, stat]) => {
-                    const percentage = Math.round(
-                      (stat.correct / stat.total) * 100,
-                    );
-                    const isWeak = percentage < 60;
-
-                    return (
-                      <div
-                        key={subject}
-                        className="p-4 rounded-xl border border-slate-200 bg-slate-50/50 flex flex-col justify-between"
-                      >
-                        <div>
-                          <div className="flex justify-between items-center text-xs font-bold mb-2">
-                            <span className="text-slate-800">{subject}</span>
-                            <span
-                              className={
-                                isWeak ? "text-rose-600" : "text-emerald-600"
-                              }
-                            >
-                              {stat.correct} / {stat.total} Benar ({percentage}
-                              %)
-                            </span>
-                          </div>
-
-                          <div className="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden mb-3">
-                            <div
-                              className={`h-full rounded-full transition-all duration-500 ${
-                                isWeak ? "bg-rose-500" : "bg-emerald-500"
-                              }`}
-                              style={{ width: `${percentage}%` }}
-                            ></div>
-                          </div>
-                        </div>
-
-                        {isWeak ? (
-                          <div className="pt-2 border-t border-slate-200/60 flex items-center justify-between text-[11px] text-rose-600">
-                            <span>⚠️ Perlu remedial materi</span>
-                            <button
-                              onClick={() =>
-                                navigateToModule(subject.toLowerCase())
-                              }
-                              className="font-bold underline hover:text-rose-800"
-                            >
-                              Buka Modul {subject} →
-                            </button>
-                          </div>
-                        ) : (
-                          <div className="pt-2 border-t border-slate-200/60 text-[11px] text-emerald-600 flex items-center gap-1 font-semibold">
-                            <Icons.Check /> Penguasaan konsep sangat baik
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-          );
-        }
-
-        if (examStage === "review") {
-          const filteredQuestions = quizData
-            .map((q, idx) => ({ ...q, originalIndex: idx }))
-            .filter((item) => {
-              const userAns = answers[item.originalIndex];
-              if (reviewFilter === "wrong") return userAns !== item.answer;
-              if (reviewFilter === "doubt")
-                return !!doubtful[item.originalIndex];
-              return true;
-            });
-
-          return (
-            <div className="p-4 md:p-8 animate-fade-in max-w-3xl mx-auto space-y-4 pb-24 md:pb-8">
-              {/* Header Review */}
-              <div className="bg-white p-4 md:p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                <div>
-                  <h2 className="font-bold text-slate-800 text-sm md:text-base">
-                    Kunci Jawaban & Pembahasan Mendalam
-                  </h2>
-                  <p className="text-xs text-slate-500">
-                    Evaluasi penalaran ilmiah dari Guru IPS
-                  </p>
-                </div>
-
-                <button
-                  onClick={() => setExamStage("result")}
-                  className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition w-max"
-                >
-                  ← Kembali ke Ringkasan
-                </button>
-              </div>
-
-              {/* Filter Tabs */}
-              <div className="flex gap-2">
-                <button
-                  onClick={() => setReviewFilter("all")}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold ${
-                    reviewFilter === "all"
-                      ? "bg-indigo-600 text-white"
-                      : "bg-white border text-slate-600"
-                  }`}
-                >
-                  Semua Soal ({quizData.length})
-                </button>
-                <button
-                  onClick={() => setReviewFilter("wrong")}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold ${
-                    reviewFilter === "wrong"
-                      ? "bg-rose-600 text-white"
-                      : "bg-white border text-slate-600"
-                  }`}
-                >
-                  Jawaban Salah / Kosong
-                </button>
-                <button
-                  onClick={() => setReviewFilter("doubt")}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold ${
-                    reviewFilter === "doubt"
-                      ? "bg-amber-500 text-white"
-                      : "bg-white border text-slate-600"
-                  }`}
-                >
-                  Ditandai Ragu
-                </button>
-              </div>
-
-              {/* Question List */}
-              <div className="space-y-4">
-                {filteredQuestions.map((q) => {
-                  const userAns = answers[q.originalIndex];
-                  const isCorrect = userAns === q.answer;
-                  const isEmpty = userAns === undefined;
-
-                  return (
-                    <div
-                      key={q.id}
-                      className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-3"
-                    >
-                      <div className="flex items-center justify-between text-xs">
-                        <div className="flex items-center gap-2">
-                          <span className="font-bold text-slate-800">
-                            Nomor {q.originalIndex + 1}
-                          </span>
-                          <span className="px-2 py-0.5 rounded-md bg-slate-100 font-semibold text-slate-600">
-                            {q.subject}
-                          </span>
-                        </div>
-                        <span
-                          className={`font-bold px-2.5 py-0.5 rounded-full ${
-                            isEmpty
-                              ? "bg-slate-100 text-slate-600"
-                              : isCorrect
-                                ? "bg-emerald-100 text-emerald-700"
-                                : "bg-rose-100 text-rose-700"
-                          }`}
-                        >
-                          {isEmpty
-                            ? "Kosong (0)"
-                            : isCorrect
-                              ? "Benar (+4)"
-                              : "Salah (-1)"}
-                        </span>
-                      </div>
-
-                      <p className="text-slate-800 text-xs md:text-sm font-medium leading-relaxed">
-                        {q.q}
-                      </p>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs pt-1">
-                        {q.options.map((opt, oIdx) => {
-                          const isKey = oIdx === q.answer;
-                          const isChosen = oIdx === userAns;
-
-                          let style =
-                            "border-slate-200 bg-slate-50/70 text-slate-600";
-                          if (isKey) {
-                            style =
-                              "border-emerald-500 bg-emerald-50 text-emerald-900 font-semibold ring-1 ring-emerald-400";
-                          } else if (isChosen && !isCorrect) {
-                            style =
-                              "border-rose-400 bg-rose-50 text-rose-900 font-semibold";
-                          }
-
-                          return (
-                            <div
-                              key={oIdx}
-                              className={`p-2.5 rounded-xl border flex items-center gap-2.5 ${style}`}
-                            >
-                              <span className="w-5 h-5 flex-shrink-0 flex items-center justify-center rounded-lg bg-white text-[11px] font-bold border border-inherit">
-                                {String.fromCharCode(65 + oIdx)}
-                              </span>
-                              <span className="leading-snug">{opt}</span>
-                            </div>
-                          );
-                        })}
-                      </div>
-
-                      {/* Teacher's Conceptual Explanation */}
-                      <div className="bg-indigo-50/70 rounded-xl p-3.5 border border-indigo-100 text-xs text-indigo-950 mt-3">
-                        <div className="font-bold flex items-center gap-1.5 text-indigo-700 mb-1">
-                          <Icons.Help /> Pembahasan Konsep Guru:
-                        </div>
-                        <p className="leading-relaxed">{q.explanation}</p>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          );
-        }
-
-        return null;
-      };
-
-      const App = () => {
-        const [currentTab, setCurrentTab] = React.useState("home");
-        const [targetModule, setTargetModule] = React.useState("ekonomi");
-
-        const handleNavigateToModule = (subjectKey) => {
-          setTargetModule(subjectKey);
-          setCurrentTab("modules");
-        };
-
-        const renderContent = () => {
-          switch (currentTab) {
-            case "home":
-              return <HomeScreen navigateTo={setCurrentTab} />;
-            case "modules":
-              return <ModulesScreen defaultSubject={targetModule} />;
-            case "chat":
-              return <ChatScreen />;
-            case "quiz":
-              return <QuizScreen navigateToModule={handleNavigateToModule} />;
-            default:
-              return <HomeScreen navigateTo={setCurrentTab} />;
-          }
-        };
-
-        const NavButton = ({ tab, icon: Icon, label }) => {
-          const isActive = currentTab === tab;
-          return (
-            <button
-              onClick={() => setCurrentTab(tab)}
-              className={`flex flex-col items-center justify-center w-full py-2 ${
-                isActive
-                  ? "text-blue-600 font-bold"
-                  : "text-slate-500 hover:text-slate-800"
-              }`}
-            >
-              <div
-                className={`mb-1 transition-transform ${isActive ? "scale-110" : ""}`}
-              >
-                <Icon />
-              </div>
-              <span className="text-[10px]">{label}</span>
-            </button>
-          );
-        };
-
-        return (
-          <div className="min-h-screen flex flex-col bg-slate-100">
-            {/* Header Desktop */}
-            <header className="hidden md:flex bg-white shadow-sm px-6 py-3.5 items-center justify-between z-20 border-b border-slate-200">
-              <div
-                className="font-extrabold text-xl text-slate-800 flex items-center gap-2 cursor-pointer"
-                onClick={() => setCurrentTab("home")}
-              >
-                <div className="bg-blue-600 text-white px-2 py-0.5 rounded-lg text-sm font-black">
-                  KSR
-                </div>
-                <span>IPS Pro</span>
-              </div>
-              <nav className="flex items-center gap-1.5">
-                <button
-                  onClick={() => setCurrentTab("home")}
-                  className={`px-4 py-2 rounded-xl font-semibold text-xs transition ${
-                    currentTab === "home"
-                      ? "bg-blue-50 text-blue-600"
-                      : "text-slate-600 hover:bg-slate-50"
-                  }`}
-                >
-                  Home
-                </button>
-                <button
-                  onClick={() => setCurrentTab("modules")}
-                  className={`px-4 py-2 rounded-xl font-semibold text-xs transition ${
-                    currentTab === "modules"
-                      ? "bg-blue-50 text-blue-600"
-                      : "text-slate-600 hover:bg-slate-50"
-                  }`}
-                >
-                  Modul Kisi-Kisi
-                </button>
-                <button
-                  onClick={() => setCurrentTab("chat")}
-                  className={`px-4 py-2 rounded-xl font-semibold text-xs transition ${
-                    currentTab === "chat"
-                      ? "bg-blue-50 text-blue-600"
-                      : "text-slate-600 hover:bg-slate-50"
-                  }`}
-                >
-                  Tanya Guru
-                </button>
-                <button
-                  onClick={() => setCurrentTab("quiz")}
-                  className={`px-4 py-2 rounded-xl font-bold text-xs transition flex items-center gap-1.5 ${
-                    currentTab === "quiz"
-                      ? "bg-orange-500 text-white shadow-sm"
-                      : "bg-orange-50 text-orange-600 hover:bg-orange-100"
-                  }`}
-                >
-                  <Icons.Trophy /> Simulasi CBT
-                </button>
-              </nav>
-            </header>
-
-            <main className="flex-1 overflow-y-auto">{renderContent()}</main>
-
-            {/* Bottom Navigation Mobile */}
-            <nav className="md:hidden bg-white border-t border-slate-200 fixed bottom-0 left-0 right-0 z-30 pb-safe shadow-lg">
-              <div className="flex justify-around items-center h-16">
-                <NavButton tab="home" icon={Icons.Home} label="Home" />
-                <NavButton tab="modules" icon={Icons.Book} label="Modul" />
-                <NavButton tab="chat" icon={Icons.Message} label="Tanya Guru" />
-                <NavButton tab="quiz" icon={Icons.Trophy} label="CBT KSR" />
-              </div>
-            </nav>
-          </div>
-        );
-      };
-
-      const root = ReactDOM.createRoot(document.getElementById("root"));
-      root.render(<App />);
+        <div class="p-3.5 rounded-2xl ${isGuru ? "bg-white rounded-tl-none border border-slate-200 text-slate-700" : "bg-indigo-600 text-white rounded-tr-none"} leading-relaxed shadow-2xs max-w-md whitespace-pre-line">
+          ${text}
+        </div>
+      `;
+
+        chatBox.appendChild(wrap);
+        chatBox.scrollTop = chatBox.scrollHeight;
+        lucide.createIcons();
+      }
+
+      // Inisialisasi ikon saat pertama dimuat
+      document.addEventListener("DOMContentLoaded", () => {
+        lucide.createIcons();
+      });
     </script>
   </body>
 </html>
